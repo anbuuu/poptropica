@@ -175,7 +175,7 @@ unbinder.unbind();
 
     @Override
     public Context context() {
-        return null;
+        return this.getActivity().getApplicationContext();
     }
 
     @Override

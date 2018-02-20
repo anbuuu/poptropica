@@ -1,6 +1,6 @@
 package com.application.domainchallenge.data.repository.datasource;
 
-import com.application.domainchallenge.data.entity.ListingEntity;
+import com.application.domainchallenge.data.entity.Example;
 import com.application.domainchallenge.data.net.RestApi;
 
 import org.junit.Before;
@@ -8,8 +8,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
-
-import java.util.List;
 
 import io.reactivex.Observable;
 
@@ -36,7 +34,7 @@ public class CloudListingDataStoreTest {
 
     @Test
     public void testGetListingEntityListFromApi() {
-        Observable<List<ListingEntity>> listObservable = cloudListingDataStore.listingEntityList();
+        Observable<Example> listObservable = cloudListingDataStore.listingEntityList();
         verify(mockRestApi).listingEntityList();
         /*
 

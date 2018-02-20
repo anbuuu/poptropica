@@ -5,12 +5,11 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.util.Log;
 
-import com.application.domainchallenge.data.entity.ListingEntity;
+import com.application.domainchallenge.data.entity.Example;
 import com.application.domainchallenge.data.entity.mapper.ListingEntityJsonMapper;
 import com.application.domainchallenge.data.exception.NetworkConnectionException;
 
 import java.net.MalformedURLException;
-import java.util.List;
 
 import io.reactivex.Observable;
 
@@ -36,7 +35,8 @@ public class RestApiImpl implements RestApi {
 
 
     @Override
-    public Observable<List<ListingEntity>> listingEntityList() {
+    //public Observable<List<ListingEntity>> listingEntityList() {
+    public Observable<Example> listingEntityList() {
 
         return Observable.create(emitter -> {
             if ( isThereInternetConnection()) {

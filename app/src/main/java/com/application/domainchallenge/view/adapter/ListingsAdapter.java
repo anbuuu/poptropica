@@ -2,6 +2,7 @@ package com.application.domainchallenge.view.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +26,8 @@ import butterknife.ButterKnife;
 
 public class ListingsAdapter extends RecyclerView.Adapter<ListingsAdapter.ListingViewHolder> {
 
+
+    private static final String TAG = ListingsAdapter.class.getSimpleName();
 
     public interface OnItemClickListener {
         void onUserItemClicked(ListingModel listingModel);
@@ -56,10 +59,14 @@ public class ListingsAdapter extends RecyclerView.Adapter<ListingsAdapter.Listin
 
     @Override
     public void onBindViewHolder(ListingsAdapter.ListingViewHolder holder, int position) {
-
+        Log.d(TAG, "Entering onBindViewHolder with  " +
+            this.listingsCollection.get(position).getTruncatedDescription());
         final ListingModel listingModel = this.listingsCollection.get(position);
-        holder.textViewItemTitle.setText(listingModel.getDisplayableAddress());
+        holder.textViewItemTitle.setText(listingModel.getTruncatedDescription());
         // TODO set Click Listener
+        if ( ListingsAdapter.this.onItemClickListener != null) {
+            Log.d(TAG, "On Item Clicked " + listingModel.getTruncatedDescription());
+        }
     }
 
     @Override
@@ -68,6 +75,7 @@ public class ListingsAdapter extends RecyclerView.Adapter<ListingsAdapter.Listin
     }
 
     public void setListingsCollection(Collection<ListingModel> listingsCollection) {
+        Log.d(TAG, "Entering setListingsCollection with listingsCollection  " + listingsCollection.size());
         this.validateListingsCollection(listingsCollection);
         this.listingsCollection = (List<ListingModel>) listingsCollection;
         this.notifyDataSetChanged();

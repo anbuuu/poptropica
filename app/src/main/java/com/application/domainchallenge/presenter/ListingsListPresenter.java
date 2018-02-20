@@ -104,6 +104,7 @@ public class ListingsListPresenter implements Presenter {
 
         @Override
         public void onNext(List<Listing> listings) {
+            Log.d(TAG, "Retrieving listings with count = " + listings.size());
             ListingsListPresenter.this.showListingsCollectionView(listings);
         }
 

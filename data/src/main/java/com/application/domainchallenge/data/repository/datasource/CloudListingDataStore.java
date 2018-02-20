@@ -1,9 +1,7 @@
 package com.application.domainchallenge.data.repository.datasource;
 
-import com.application.domainchallenge.data.entity.ListingEntity;
+import com.application.domainchallenge.data.entity.Example;
 import com.application.domainchallenge.data.net.RestApi;
-
-import java.util.List;
 
 import io.reactivex.Observable;
 
@@ -22,7 +20,7 @@ class CloudListingDataStore implements ListingDataStore {
 
 
     @Override
-    public Observable<List<ListingEntity>> listingEntityList() {
+    public Observable<Example> listingEntityList() {
         return this.restApi.listingEntityList();
     }
 

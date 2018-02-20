@@ -1,10 +1,9 @@
 package com.application.domainchallenge.data.net;
 
-import com.application.domainchallenge.data.entity.ListingEntity;
-
-import java.util.List;
+import com.application.domainchallenge.data.entity.Example;
 
 import io.reactivex.Observable;
+
 
 /**
  * RestApi for Retrieving Data from Network
@@ -19,7 +18,7 @@ public interface RestApi {
      * Retrieves an {@link io.reactivex.Observable} which will emit a link of
      * {@link com.application.domainchallenge.data.entity.ListingEntity}
      */
-    Observable<List<ListingEntity>> listingEntityList();
-
+    //Observable<List<ListingEntity>> listingEntityList();
+    Observable<Example> listingEntityList();
 
 }

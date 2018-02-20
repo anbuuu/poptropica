@@ -1,10 +1,12 @@
 package com.application.domainchallenge.data.entity.mapper;
 
+import android.util.Log;
+
+import com.application.domainchallenge.data.entity.Example;
 import com.application.domainchallenge.data.entity.ListingEntity;
 import com.application.domainchallenge.domain.Listing;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -18,6 +20,8 @@ import javax.inject.Singleton;
 @Singleton
 public class ListingEntityDataMapper {
 
+    private static final String TAG = ListingEntityDataMapper.class.getSimpleName();
+
     @Inject
     ListingEntityDataMapper() {
     }
@@ -26,14 +30,20 @@ public class ListingEntityDataMapper {
      * Transform a List of {@link com.application.domainchallenge.data.entity.ListingEntity} to
      * a Collection of {@link com.application.domainchallenge.domain.Listing}
      */
-    public List<Listing> transform(Collection<ListingEntity> listingEntityCollection) {
+    public List<Listing> transform(Example listingEntityCollection) {
+        //Collection<ListingEntity> listCollection = listingEntityCollection.getListingResults().getListings();
+
+        Log.d(TAG, "Entering transform with collection = " + listingEntityCollection.getListingResults().getListings().size());
+
         final List<Listing> listingsList = new ArrayList<>(20); // TODO why magic Number ?
-        for (ListingEntity listingEntity : listingEntityCollection) {
+        for (com.application.domainchallenge.data.entity.Listing listingEntity : listingEntityCollection.getListingResults().getListings()) {
             final Listing listing = transform(listingEntity);
             if (listing != null) {
                 listingsList.add(listing);
             }
         }
+
+        // Need to Map Example into List Listings
         return listingsList;
     }
 
@@ -43,7 +53,7 @@ public class ListingEntityDataMapper {
      * @param listingEntity
      * @return
      */
-    public Listing transform(ListingEntity listingEntity) {
+    public Listing transform(com.application.domainchallenge.data.entity.Listing listingEntity) {
         Listing listing = null;
         if (listingEntity != null) {
             listing = new Listing(); //TODO verify this
@@ -63,7 +73,7 @@ public class ListingEntityDataMapper {
             listing.setDisplayPrice(listingEntity.getDisplayPrice());
             listing.setDisplayableAddress(listingEntity.getDisplayableAddress());
             listing.setEnquiryTimeStamp(listingEntity.getEnquiryTimeStamp());
-            listing.setFeatures(listingEntity.getFeatures());
+            listing.setFeatures(listing.getFeatures());
             listing.setFreshnessLevel(listingEntity.getFreshnessLevel());
             listing.setGroupCount(listingEntity.getGroupCount());
             listing.setGroupNo(listingEntity.getGroupNo());
