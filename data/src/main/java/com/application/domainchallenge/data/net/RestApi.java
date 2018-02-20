@@ -1,0 +1,25 @@
+package com.application.domainchallenge.data.net;
+
+import com.application.domainchallenge.data.entity.ListingEntity;
+
+import java.util.List;
+
+import io.reactivex.Observable;
+
+/**
+ * RestApi for Retrieving Data from Network
+ */
+
+public interface RestApi {
+
+    // TODO change to https://rest.domain.com.au/searchservice.svc/mapsearch?mode=buy&sub=Bondi&pcodes=2026&state=NSW
+    // before Release
+    String API_DOMAIN_URL = "https://api.myjson.com/bins/1d536d";
+    /**
+     * Retrieves an {@link io.reactivex.Observable} which will emit a link of
+     * {@link com.application.domainchallenge.data.entity.ListingEntity}
+     */
+    Observable<List<ListingEntity>> listingEntityList();
+
+
+}

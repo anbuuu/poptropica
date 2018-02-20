@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">DomainChallenge</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+
+    <string name="exception_message_generic">There was an application error</string>
+    <string name="exception_message_no_connection">There is no internet connection</string>
+    <string name="exception_message_listing_not_found">Cannot retrieve Listing data. Check your internet connection</string>
+
+</resources>
