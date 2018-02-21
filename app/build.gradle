@@ -143,6 +143,7 @@ dependencies {
     implementation presentationDependencies.appCompat
     compile presentationDependencies.constraintLayout
     compile presentationDependencies.design
+    compile presentationDependencies.cardView
 
     //compile 'com.android.support:appcompat-v7:21.2.0'
     //implementation 'com.android.support:design:26.1.0'

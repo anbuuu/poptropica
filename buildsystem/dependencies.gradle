@@ -53,10 +53,11 @@ ext {
             javaxAnnotation: "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
             glide          : "com.github.bumptech.glide:glide:${glideVersion}",
             stetho         : "com.facebook.stetho:stetho:${stethoVersion}",
-            design         :   "com.android.support:design:${appCompatVersion}",
-            appCompat      :   "com.android.support:appcompat-v7:${appCompatVersion}",
-            butterKnife     :   "com.jakewharton:butterknife:${butterKnifeVersion}",
-            butterKnifeComp :   "com.jakewharton:butterknife-compiler:${butterKnifeVersion}"
+            design         : "com.android.support:design:${appCompatVersion}",
+            appCompat      : "com.android.support:appcompat-v7:${appCompatVersion}",
+            butterKnife    : "com.jakewharton:butterknife:${butterKnifeVersion}",
+            butterKnifeComp : "com.jakewharton:butterknife-compiler:${butterKnifeVersion}",
+            cardView       :  "com.android.support:cardview-v7:${appCompatVersion}"
 
     ]
 

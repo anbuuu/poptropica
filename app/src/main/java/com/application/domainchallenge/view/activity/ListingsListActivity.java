@@ -39,6 +39,9 @@ public class ListingsListActivity extends BaseActivity
         ButterKnife.bind(this);
         this.initializeInjector();
 
+        // This should be the place where the Fragment needs to be setup
+
+
         if ( savedInstanceState == null ) {
             addFragment(R.id.fragmentContainer, new ListingsListFragment());
         }

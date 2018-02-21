@@ -65,6 +65,7 @@ public class ListingEntityDataMapper {
             listing.setArea(listingEntity.getArea());
             listing.setAuctionDate(listingEntity.getAuctionDate());
             listing.setAvailableFrom(listingEntity.getAvailableFrom());
+            listing.setBedrooms(listingEntity.getBedrooms());
             listing.setBathrooms(listingEntity.getBathrooms());
             listing.setCarspaces(listingEntity.getCarspaces());
             listing.setDateFirstListed(listingEntity.getDateFirstListed());

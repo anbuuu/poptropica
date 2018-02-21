@@ -38,11 +38,15 @@ public class ListingModelDataMapper {
         // isElite
         final ListingModel listingModel = new ListingModel();
         listingModel.setAgencyLogoUrl(listing.getAgencyLogoUrl());
+        listingModel.setDisplayPrice(listing.getDisplayPrice());
+        listingModel.setDisplayableAddress(listing.getDisplayableAddress());
+        listingModel.setBedrooms(listing.getBedrooms());
         listingModel.setBathrooms(listing.getBathrooms());
         listingModel.setCarspaces(listing.getCarspaces());
         listingModel.setTruncatedDescription(listing.getTruncatedDescription());
         listingModel.setRetinaDisplayThumbUrl(listing.getRetinaDisplayThumbUrl());
         listingModel.setSecondRetinaDisplayThumbUrl(listing.getSecondRetinaDisplayThumbUrl());
+        listingModel.setAgencyLogoUrl(listing.getAgencyLogoUrl());
         listingModel.setIsElite(listing.getIsElite());
 
         return listingModel;
