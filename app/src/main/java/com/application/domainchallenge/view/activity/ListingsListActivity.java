@@ -3,8 +3,13 @@ package com.application.domainchallenge.view.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.Window;
 
 import com.application.domainchallenge.R;
@@ -14,6 +19,7 @@ import com.application.domainchallenge.internal.di.components.ListingComponent;
 import com.application.domainchallenge.model.ListingModel;
 import com.application.domainchallenge.view.fragment.ListingsListFragment;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -30,7 +36,14 @@ public class ListingsListActivity extends BaseActivity
     private ListingComponent listingComponent;
     private static final String TAG = ListingsListActivity.class.getSimpleName();
 
+    /*@BindView(R.id.viewpager)
+    ViewPager viewPager;
 
+    @BindView(R.id.sliding_tabs)
+    TabLayout sliding_tabs;*/
+
+    @BindView(R.id.navigation)
+    BottomNavigationView bottomNavigationView;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,12 +52,23 @@ public class ListingsListActivity extends BaseActivity
         ButterKnife.bind(this);
         this.initializeInjector();
 
-        // This should be the place where the Fragment needs to be setup
+        bottomNavigationView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener);
+      /*  // This should be the place where the Fragment needs to be setup
+        viewPager.setAdapter(new ListingTypeFragmentPagerAdapter(getSupportFragmentManager(),
+                ListingsListActivity.this));
+
+        // Give the tablayout to the view pager
+        sliding_tabs.setupWithViewPager(viewPager);*/
+//        if ( savedInstanceState == null ) {
+//            addFragment(R.id.fragmentContainer, new ListingsListFragment());
+//        }
+        //loadFragment(new ListingsListFragment());
+       // Menu menu = bottomNavigationView.getMenu();
+
+        bottomNavigationView.setSelectedItemId(R.id.navigation_standard);
+       // menu.set
 
 
-        if ( savedInstanceState == null ) {
-            addFragment(R.id.fragmentContainer, new ListingsListFragment());
-        }
     }
 
     private void initializeInjector() {
@@ -65,4 +89,37 @@ public class ListingsListActivity extends BaseActivity
         Log.d(TAG, "Entering onListingClicked with User Model " + listingModel.getHeadline());
 
     }
+
+    private BottomNavigationView.OnNavigationItemSelectedListener onNavigationItemSelectedListener
+             = new BottomNavigationView.OnNavigationItemSelectedListener() {
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            Fragment fragment;
+
+            switch ( item.getItemId()) {
+                case R.id.navigation_standard:
+                    Log.d(TAG, "Entering Standard");
+                    fragment = ListingsListFragment.newInstance(0);
+                    loadFragment(fragment);
+                    break;
+
+                case R.id.navigation_premium:
+                    Log.d(TAG, "Entering Premium");
+                    fragment = ListingsListFragment.newInstance(1);
+                    loadFragment(fragment);
+                    break;
+            }
+            return false;
+        }
+    };
+
+    private void loadFragment(Fragment fragment) {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.fragmentContainer, fragment);
+        //TODO find a abetter way to replace fragment
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
+
 }
+

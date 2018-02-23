@@ -59,14 +59,15 @@ public class ListingsAdapter extends RecyclerView.Adapter<ListingsAdapter.Listin
         // Create the View
         //final View view = this.layoutInflater.inflate(R.layout.row_listing_normal, parent, false);
         // if isElite is true .. then another layout
-        final View view = this.layoutInflater.inflate(R.layout.row_listing_elite, parent, false);
+        Log.d(TAG, "Entering onCreateViewHolder() with View Type " + viewType);
+        final View view = this.layoutInflater.inflate(R.layout.row_listing_normal, parent, false);
         return new ListingViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(ListingsAdapter.ListingViewHolder holder, int position) {
-     /*   Log.d(TAG, "Entering onBindViewHolder with  " +
-            this.listingsCollection.get(position).getTruncatedDescription());*/
+        Log.d(TAG, "Entering onBindViewHolder with  " +
+            this.listingsCollection.get(position).getTruncatedDescription());
         final ListingModel listingModel = this.listingsCollection.get(position);
         Glide.with(mContext)
                 .load(listingModel.getRetinaDisplayThumbUrl())
@@ -85,11 +86,11 @@ public class ListingsAdapter extends RecyclerView.Adapter<ListingsAdapter.Listin
                 .centerCrop()
                 .into(holder.iv_agency_logo);
 
-        Glide.with(mContext)
-                .load(listingModel.getSecondRetinaDisplayThumbUrl())
+       /* Glide.with(mContext)
+                .load(listingModel.getSecondRetinaDisplayThumbUrl() )
                 .fitCenter()
                 .into(holder.iv_listing_image_elite);
-
+*/
 
 
 
@@ -97,6 +98,12 @@ public class ListingsAdapter extends RecyclerView.Adapter<ListingsAdapter.Listin
         if ( ListingsAdapter.this.onItemClickListener != null) {
             Log.d(TAG, "On Item Clicked " + listingModel.getTruncatedDescription());
         }
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        Log.d(TAG, "Entering getItemViewType with position " + position);
+        return super.getItemViewType(position);
     }
 
     @Override
@@ -141,8 +148,12 @@ public class ListingsAdapter extends RecyclerView.Adapter<ListingsAdapter.Listin
         @BindView(R.id.agency_logo)
         ImageView iv_agency_logo;
 
-        @BindView(R.id.listing_second_retina_thumbnail)
-        ImageView iv_listing_image_elite;
+        // TODO Will need two different View Holders because of the following
+        // issue that second_retina... has to be commented
+        // if normal viewing takes place
+
+     /*   @BindView(R.id.listing_second_retina_thumbnail)
+        ImageView iv_listing_image_elite;*/
 
         public ListingViewHolder(View itemView) {
             super(itemView);

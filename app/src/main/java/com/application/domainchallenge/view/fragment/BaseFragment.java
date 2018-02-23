@@ -1,6 +1,6 @@
 package com.application.domainchallenge.view.fragment;
 
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.widget.Toast;
 
 import com.application.domainchallenge.internal.di.HasComponent;
@@ -9,7 +9,7 @@ import com.application.domainchallenge.internal.di.HasComponent;
  * Base {@link Fragment} class for every fragment in this application
  */
 
-public abstract class BaseFragment extends Fragment{
+public abstract class BaseFragment extends Fragment {
     /**
      * Shows a {@link android.widget.Toast}message.
      *

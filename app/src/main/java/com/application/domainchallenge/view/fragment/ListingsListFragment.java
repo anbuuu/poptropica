@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,6 +35,7 @@ import butterknife.ButterKnife;
 public class ListingsListFragment
         extends BaseFragment implements ListingsListView{
 
+    private static final String TAG = ListingsListFragment.class.getSimpleName();
     @Inject
     ListingsListPresenter listingsListPresenter;
 
@@ -49,12 +51,25 @@ public class ListingsListFragment
     @BindView(R.id.btn_retry)
     Button btn_retry;
 
+    public static final String ARG_PAGE = "ARG_PAGE";
+    private int mPage;
+
     private ListingListListener listingListListener;
     public ListingsListFragment() {
         // TODO Remove set retain and find the best practices for screen orientation
         setRetainInstance(true);
     }
 
+
+    public static ListingsListFragment newInstance(int page) {
+        Log.d(TAG, "### Entering newInstance()");
+        Bundle args = new Bundle();
+        args.putInt(ARG_PAGE, page);
+        ListingsListFragment listingsListFragment = new ListingsListFragment();
+        listingsListFragment.setArguments(args);
+        return listingsListFragment;
+
+    }
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
@@ -66,8 +81,11 @@ public class ListingsListFragment
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        Log.d(TAG, "### Entering onCreate()");
         super.onCreate(savedInstanceState);
         this.getComponent(ListingComponent.class).inject(this);
+        //mPage = getArguments().getInt(ARG_PAGE);
+
     }
 
 
@@ -76,7 +94,7 @@ public class ListingsListFragment
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         final View fragmentView = inflater.inflate(R.layout.fragment_property_listings,
                 container, false);
-        ButterKnife.setDebug(true); //TODO -- Remove this at release
+       //Log.d(TAG, "The Position retrieved is " + mPage);
         ButterKnife.bind(this, fragmentView);
         setupRecyclerView();
         return fragmentView;

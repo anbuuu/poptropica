@@ -36,13 +36,7 @@
                 android:orientation="vertical">
             <TextView
                 android:id="@+id/listing_price"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="@dimen/padding_start"
-                android:paddingRight="@dimen/padding_end"
-                android:paddingTop="@dimen/paddingTop"
-                android:text="Auction"
-                android:textSize="@dimen/tv_description_text_size"
+                style="@style/AppTheme.PricingStyle"
                 />
 
 

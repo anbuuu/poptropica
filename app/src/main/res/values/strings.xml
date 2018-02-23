@@ -8,4 +8,6 @@
     <string name="exception_message_no_connection">There is no internet connection</string>
     <string name="exception_message_listing_not_found">Cannot retrieve Listing data. Check your internet connection</string>
 
+    <string name="title_standard">STANDARD</string>
+    <string name="title_premium">PREMIUM</string>
 </resources>
