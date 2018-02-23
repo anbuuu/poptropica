@@ -84,7 +84,7 @@ public class ListingsListFragment
         Log.d(TAG, "### Entering onCreate()");
         super.onCreate(savedInstanceState);
         this.getComponent(ListingComponent.class).inject(this);
-        //mPage = getArguments().getInt(ARG_PAGE);
+        mPage = getArguments().getInt(ARG_PAGE);
 
     }
 
@@ -94,7 +94,7 @@ public class ListingsListFragment
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         final View fragmentView = inflater.inflate(R.layout.fragment_property_listings,
                 container, false);
-       //Log.d(TAG, "The Position retrieved is " + mPage);
+        Log.d(TAG, "The Position retrieved is " + mPage);
         ButterKnife.bind(this, fragmentView);
         setupRecyclerView();
         return fragmentView;
@@ -199,6 +199,7 @@ unbinder.unbind();
     @Override
     public void renderListingsList(Collection<ListingModel> listingModelCollection) {
         if ( listingModelCollection != null ) {
+            this.listingsAdapter.setViewType(mPage);
             this.listingsAdapter.setListingsCollection(listingModelCollection);
         }
     }
