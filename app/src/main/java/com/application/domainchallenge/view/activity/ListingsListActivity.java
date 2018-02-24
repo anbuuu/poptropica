@@ -3,13 +3,10 @@ package com.application.domainchallenge.view.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.Window;
 
 import com.application.domainchallenge.R;
@@ -19,7 +16,6 @@ import com.application.domainchallenge.internal.di.components.ListingComponent;
 import com.application.domainchallenge.model.ListingModel;
 import com.application.domainchallenge.view.fragment.ListingsListFragment;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -42,30 +38,31 @@ public class ListingsListActivity extends BaseActivity
     @BindView(R.id.sliding_tabs)
     TabLayout sliding_tabs;*/
 
-    @BindView(R.id.navigation)
-    BottomNavigationView bottomNavigationView;
+    /*@BindView(R.id.navigation)
+    BottomNavigationView bottomNavigationView;*/
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // TODO Remove this progress
         requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         setContentView(R.layout.activity_layout);
         ButterKnife.bind(this);
         this.initializeInjector();
 
-        bottomNavigationView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener);
+        //bottomNavigationView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener);
       /*  // This should be the place where the Fragment needs to be setup
         viewPager.setAdapter(new ListingTypeFragmentPagerAdapter(getSupportFragmentManager(),
                 ListingsListActivity.this));
 
         // Give the tablayout to the view pager
         sliding_tabs.setupWithViewPager(viewPager);*/
-//        if ( savedInstanceState == null ) {
-//            addFragment(R.id.fragmentContainer, new ListingsListFragment());
-//        }
+        if ( savedInstanceState == null ) {
+            addFragment(R.id.fragmentContainer, new ListingsListFragment());
+        }
         //loadFragment(new ListingsListFragment());
        // Menu menu = bottomNavigationView.getMenu();
 
-        bottomNavigationView.setSelectedItemId(R.id.navigation_standard);
+        //bottomNavigationView.setSelectedItemId(R.id.navigation_standard);
        // menu.set
 
 
@@ -90,7 +87,7 @@ public class ListingsListActivity extends BaseActivity
 
     }
 
-    private BottomNavigationView.OnNavigationItemSelectedListener onNavigationItemSelectedListener
+    /*private BottomNavigationView.OnNavigationItemSelectedListener onNavigationItemSelectedListener
              = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -111,7 +108,7 @@ public class ListingsListActivity extends BaseActivity
             }
             return false;
         }
-    };
+    };*/
 
     private void loadFragment(Fragment fragment) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();

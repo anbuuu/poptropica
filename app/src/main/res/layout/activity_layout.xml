@@ -23,7 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <android.support.design.widget.BottomNavigationView
+   <!-- <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -34,6 +34,6 @@
         app:itemIconTint="@android:color/white"
         app:itemTextColor="@android:color/white"
         android:layout_alignParentBottom="true"
-        app:menu="@menu/navigation" />
+        app:menu="@menu/navigation" />-->
 
 </RelativeLayout>
