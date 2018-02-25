@@ -15,6 +15,7 @@ import com.application.domainchallenge.internal.di.components.DaggerListingCompo
 import com.application.domainchallenge.internal.di.components.ListingComponent;
 import com.application.domainchallenge.model.ListingModel;
 import com.application.domainchallenge.view.fragment.ListingsListFragment;
+import com.application.domainchallenge.view.fragment.PropertyListingsFragment;
 
 import butterknife.ButterKnife;
 
@@ -57,7 +58,8 @@ public class ListingsListActivity extends BaseActivity
         // Give the tablayout to the view pager
         sliding_tabs.setupWithViewPager(viewPager);*/
         if ( savedInstanceState == null ) {
-            addFragment(R.id.fragmentContainer, new ListingsListFragment());
+           // addFragment(R.id.fragmentContainer, new ListingsListFragment());
+            addFragment(R.id.fragmentContainer, new PropertyListingsFragment());
         }
         //loadFragment(new ListingsListFragment());
        // Menu menu = bottomNavigationView.getMenu();

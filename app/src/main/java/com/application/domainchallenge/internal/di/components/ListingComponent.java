@@ -4,6 +4,7 @@ import com.application.domainchallenge.internal.di.PerActivity;
 import com.application.domainchallenge.internal.di.modules.ActivityModule;
 import com.application.domainchallenge.internal.di.modules.ListingModule;
 import com.application.domainchallenge.view.fragment.ListingsListFragment;
+import com.application.domainchallenge.view.fragment.PropertyListingsFragment;
 
 import dagger.Component;
 
@@ -16,4 +17,6 @@ import dagger.Component;
 modules = {ActivityModule.class, ListingModule.class})
 public interface ListingComponent extends ActivityComponent{
     void inject(ListingsListFragment listingsListFragment);
+    void inject(PropertyListingsFragment listingsListFragment);
+
 }

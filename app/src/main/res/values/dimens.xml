@@ -48,4 +48,17 @@
 
 
     <!-- until here -->
+
+    <dimen name="rvPaddingLeft">5dp</dimen>
+    <dimen name="rvPaddingRight">5dp</dimen>
+    <dimen name="cardViewLayoutMargin">4dp</dimen>
+    <dimen name="img_small_layout_width">117dp</dimen>
+    <dimen name="img_small_layout_height">175dp</dimen>
+
+    <dimen name="img_big_layout_width">200dp</dimen>
+    <dimen name="img_big_layout_height">113dp</dimen>
+
+    <dimen name="txt_itemTitle">18sp</dimen>
+
+
 </resources>

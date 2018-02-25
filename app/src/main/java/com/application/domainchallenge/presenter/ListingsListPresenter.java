@@ -11,6 +11,7 @@ import com.application.domainchallenge.exception.ErrorMessageFactory;
 import com.application.domainchallenge.internal.di.PerActivity;
 import com.application.domainchallenge.mapper.ListingModelDataMapper;
 import com.application.domainchallenge.model.ListingModel;
+import com.application.domainchallenge.model.PropertyTypeListingModel;
 import com.application.domainchallenge.view.ListingsListView;
 
 import java.util.Collection;
@@ -90,10 +91,17 @@ public class ListingsListPresenter implements Presenter {
         this.viewListView.showError(errorMessage);
     }
 
-    private void showListingsCollectionView(Collection<Listing> listingsCollection) {
-        final Collection<ListingModel> listingsModelCollection =
+   /* private void showListingsCollectionView(Collection<Listing> listingsCollection) {
+        final Collection<PropertyTypeListingModel> listingsModelCollection =
                 this.listingModelDataMapper.transform(listingsCollection);
         this.viewListView.renderListingsList(listingsModelCollection);
+    }*/
+
+    private void showListingsCollectionView(Collection<Listing> listingsCollection) {
+        final Collection<PropertyTypeListingModel> listingsModelCollection =
+                this.listingModelDataMapper.transform(listingsCollection);
+        this.viewListView.renderListingsList(listingsModelCollection);
+
     }
 
     private void getListingList() {

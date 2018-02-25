@@ -10,4 +10,5 @@
 
     <string name="title_standard">STANDARD</string>
     <string name="title_premium">PREMIUM</string>
+    <string name="contentDescriptionContent">ListingsImageData</string>
 </resources>

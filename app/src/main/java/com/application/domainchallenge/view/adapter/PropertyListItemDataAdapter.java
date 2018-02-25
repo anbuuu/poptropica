@@ -11,97 +11,78 @@ import android.widget.TextView;
 
 import com.application.domainchallenge.R;
 import com.application.domainchallenge.model.ListingModel;
-import com.application.domainchallenge.model.PropertyTypeListingModel;
+import com.bumptech.glide.Glide;
 
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
-
-import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * Adapter that manages a Collection of {@link com.application.domainchallenge.model.ListingModel}
+ * Created by anbu.ezhilan on 25/2/18.
  */
 
-public class ListingsAdapter extends RecyclerView.Adapter {
+public class PropertyListItemDataAdapter extends RecyclerView.Adapter  {
 
 
-    private static final String TAG = ListingsAdapter.class.getSimpleName();
-    private int mViewType;
 
-    public interface OnItemClickListener {
-        void onUserItemClicked(ListingModel listingModel);
-    }
-
-    private final int STANDARD = 0, PREMIUM = 1;
-    private List<PropertyTypeListingModel> listingsCollection;
-    private final LayoutInflater layoutInflater;
+    private List<ListingModel> categoryItemList;
     private Context mContext;
+    private String categoryName;
+    private static final String TAG = PropertyListItemDataAdapter.class.getSimpleName();
 
-    private OnItemClickListener onItemClickListener;
-
-    @Inject
-    ListingsAdapter(Context context) {
-        this.layoutInflater =
-                (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        this.listingsCollection = Collections.emptyList();
+    public PropertyListItemDataAdapter(Context context, List<ListingModel> singleSectionItems, String sectionName) {
+        this.categoryItemList = singleSectionItems;
         this.mContext = context;
+        this.categoryName = sectionName;
+
     }
+
 
     @Override
-    public int getItemCount() {
-        return (this.listingsCollection != null) ? this.listingsCollection.size() : 0;
+    public int getItemViewType(int position) {
+        return position;
     }
+
+
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        // Create the View
-        //final View view = this.layoutInflater.inflate(R.layout.row_listing_normal, parent, false);
-        // if isElite is true .. then another layout
 
-        // TODO Check this null condition
         RecyclerView.ViewHolder viewHolder = null;
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
 
-        Log.d(TAG, "Entering onCreateViewHolder() with View Type " + viewType);
-        // Two different layouts based upon the viewtype
-        final View view;
-        switch(viewType) {
-            case STANDARD:
-                // Standard Layout
-                //TODO change v1
-                View v1 = inflater.inflate(R.layout.row_listing_normal, parent, false);
-                viewHolder = new StandardListingViewHolder(v1);
-                break;
+        Log.d(TAG, "Entering onCreateView Holder with View Type " + viewType);
 
-            case PREMIUM:
-                View v2 = inflater.inflate(R.layout.row_listing_elite, parent, false);
-                viewHolder = new PremiumListingViewHolder(v2);
-                break;
-                //TODO Check whether you need Default
+
+
+        final View view;
+        if ( categoryName.equalsIgnoreCase("STANDARD")) {
+            view = inflater.inflate(R.layout.row_listing_normal, null );
+            viewHolder = new StandardListingViewHolder(view);
+
+
+
+
+        } else if ( categoryName.equalsIgnoreCase("PREMIUM")) {
+            view = inflater.inflate(R.layout.row_listing_elite, null );
+            viewHolder = new PremiumListingViewHolder(view);
+
         }
 
         return viewHolder;
-
     }
 
     @Override
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, int position) {
 
-
-        //Log.d(TAG, "Entering onBindViewHolder with  " +
-          //      this.listingsCollection.get(position).getTruncatedDescription());
-
-        // TODO Check for listing Model notnull
+        final ListingModel listingModel = categoryItemList.get(position);
+        Log.d(TAG, "Enteirng onBindViewHolder with desc " +
+                listingModel.getTruncatedDescription());
 
 
-        //final ListingModel listingModel = this.listingsCollection.get(position);
 
-        // Extend from a abstract listingview holder like STandard and extend to premium
-       /* if ( holder instanceof StandardListingViewHolder) {
+        if ( holder instanceof StandardListingViewHolder) {
             Log.d(TAG, "AAA Standard Listing View Holder instance ");
 
             Glide.with(mContext)
@@ -121,8 +102,7 @@ public class ListingsAdapter extends RecyclerView.Adapter {
                     .load(listingModel.getAgencyLogoUrl())
                     .centerCrop()
                     .into(((StandardListingViewHolder) holder).iv_agency_logo);
-
-        } else if ( holder instanceof  PremiumListingViewHolder) {
+        } else if ( holder instanceof PremiumListingViewHolder ) {
             Log.d(TAG, "AAA premium Listing View Holder instance ");
             Glide.with(mContext)
                     .load(listingModel.getRetinaDisplayThumbUrl())
@@ -148,63 +128,15 @@ public class ListingsAdapter extends RecyclerView.Adapter {
                     .into(((PremiumListingViewHolder) holder).iv_listing_image_elite);
         }
 
-        
-        // TODO set Click Listener
-        if ( ListingsAdapter.this.onItemClickListener != null) {
-            Log.d(TAG, "On Item Clicked " + listingModel.getTruncatedDescription());
-        } */
-    }
-
-    @Override
-    public int getItemViewType(int position) {
-        Log.d(TAG, "Entering getItemViewType with position " + position);
-
-        if ( mViewType == 1) {
-            return PREMIUM;
-        }
-        else {
-            return STANDARD;
-        }
 
     }
 
     @Override
-    public long getItemId(int position) {
-        return position;
-    }
-
-    /*public void setListingsCollection(Collection<ListingModel> listingsCollection) {
-        Log.d(TAG, "Entering setListingsCollection with listingsCollection  " + listingsCollection.size());
-        this.validateListingsCollection(listingsCollection);
-        this.listingsCollection = (List<ListingModel>) listingsCollection;
-        this.notifyDataSetChanged();
-
-    }*/
-
-    public void setListingsCollection(Collection<PropertyTypeListingModel> listingsCollection) {
-        Log.d(TAG, "Entering setListingsCollection with listingsCollection  " + listingsCollection.size());
-        this.validateListingsCollection(listingsCollection);
-        this.listingsCollection = (List<PropertyTypeListingModel>) listingsCollection;
-        this.notifyDataSetChanged();
+    public int getItemCount() {
+        return (null != categoryItemList ? categoryItemList.size() : 0);
 
     }
 
-
-    /*TODO.. Set on Item Click Listener
-    public void setOnItemClickListener (OnItemClickListener onItemClickListener) {
-    this.onItemClickListener = onItemClickListener;
-  }
-     */
-
-    private void validateListingsCollection(Collection<PropertyTypeListingModel> listingModelCollection) {
-        if ( listingModelCollection == null ) {
-            throw new IllegalArgumentException("Property Listings cannot be null");
-        }
-    }
-
-    public void setViewType(int viewType) {
-        mViewType = viewType;
-    }
 
     public static class StandardListingViewHolder extends RecyclerView.ViewHolder{
 
@@ -227,15 +159,12 @@ public class ListingsAdapter extends RecyclerView.Adapter {
         // issue that second_retina... has to be commented
         // if normal viewing takes place
 
-     /*   @BindView(R.id.listing_second_retina_thumbnail)
-        ImageView iv_listing_image_elite;*/
 
         public StandardListingViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
     }
-
 
     public static class PremiumListingViewHolder extends RecyclerView.ViewHolder{
 
