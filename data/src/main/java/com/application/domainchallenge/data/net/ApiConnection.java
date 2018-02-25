@@ -1,8 +1,9 @@
 package com.application.domainchallenge.data.net;
 
-import com.squareup.okhttp.OkHttpClient;
-import com.squareup.okhttp.Request;
+import android.content.Context;
+import android.util.Log;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -10,6 +11,13 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.annotations.Nullable;
+import okhttp3.Cache;
+import okhttp3.Interceptor;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+
+import static com.application.domainchallenge.data.net.ApiConstants.DEFAULT_CONNECT_TIMEOUT;
+import static com.application.domainchallenge.data.net.ApiConstants.DEFAULT_READ_TIMEOUT;
 
 /**
  * API connection class used to retrieve data from Cloud
@@ -21,16 +29,20 @@ public class ApiConnection implements Callable<String> {
 
     private static final String CONTENT_TYPE_LABEL = "Content-Type";
     private static final String CONTENT_TYPE_VALUE_JSON = "application/json; characterset=utf-8";
+    private static final String TAG = ApiConnection.class.getSimpleName();
 
     private URL url;
     private String response;
+    private Context mContext;
 
-    private ApiConnection(String url) throws MalformedURLException {
+
+    private ApiConnection(String url, Context context) throws MalformedURLException {
+        this.mContext = context;
         this.url = new URL(url);
     }
 
-    static ApiConnection createGET(String url) throws MalformedURLException {
-        return new ApiConnection(url);
+    static ApiConnection createGET(String url, Context context) throws MalformedURLException {
+        return new ApiConnection(url, context);
     }
 
     /**
@@ -47,6 +59,7 @@ public class ApiConnection implements Callable<String> {
     private void connectToApi() {
         OkHttpClient okHttpClient = this.createClient();
 
+
         final Request request = new Request.Builder()
                 .url(this.url)
                 .addHeader(CONTENT_TYPE_LABEL, CONTENT_TYPE_VALUE_JSON)
@@ -58,14 +71,27 @@ public class ApiConnection implements Callable<String> {
         } catch ( IOException ex) {
             ex.printStackTrace();
         }
-
     }
 
     private OkHttpClient createClient() {
 
-        final OkHttpClient okHttpClient = new OkHttpClient();
-        okHttpClient.setReadTimeout(10000, TimeUnit.MILLISECONDS);
-        okHttpClient.setConnectTimeout(15000, TimeUnit.MILLISECONDS);
+        File cacheDir;
+        Cache cache = null;
+
+        try {
+            cacheDir = new File(mContext.getCacheDir(), "http");
+            cache = new Cache(cacheDir, ApiConstants.CACHE_SIZE);
+        } catch ( Exception ex ) {
+            Log.e(TAG, "Cannot Create Cache File");
+        }
+
+        final OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                                        .cache(cache)
+                                        .addInterceptor(new ResponseCacheInterceptor())
+                                        .connectTimeout(DEFAULT_CONNECT_TIMEOUT, TimeUnit.MILLISECONDS)
+                                        .readTimeout(DEFAULT_READ_TIMEOUT, TimeUnit.MILLISECONDS)
+                                        .followSslRedirects(true)
+                                        .build();
 
         return okHttpClient;
     }
@@ -74,4 +100,21 @@ public class ApiConnection implements Callable<String> {
     public String call() throws Exception {
         return requestSyncCall();
     }
+
+    /**
+     * Interceptor to cache data and maintain it for a minute.
+     *
+     * If the same network request is sent within a minute,
+     * the response is retrieved from cache.
+     */
+    private static class ResponseCacheInterceptor implements Interceptor {
+        @Override
+        public okhttp3.Response intercept(Chain chain) throws IOException {
+            okhttp3.Response originalResponse = chain.proceed(chain.request());
+            return originalResponse.newBuilder()
+                    .header("Cache-Control", "public, max-age=" + 60)
+                    .build();
+        }
+    }
+
 }

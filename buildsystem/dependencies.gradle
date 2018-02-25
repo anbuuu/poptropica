@@ -24,7 +24,7 @@ ext {
     javaxAnnotationVersion = '1.0'
     javaxInjectVersion = '1'
     gsonVersion = '2.3'
-    okHttpVersion = '2.5.0'
+    okHttpVersion = '3.4.1'
     androidAnnotationsVersion = '21.0.3'
     arrowVersion = '1.0.0'
     supportLibVersion = '26.1.0'
@@ -85,7 +85,7 @@ ext {
     dataDependencies = [
             daggerCompiler    : "com.google.dagger:dagger-compiler:${daggerVersion}",
             dagger            : "com.google.dagger:dagger:${daggerVersion}",
-            okHttp            : "com.squareup.okhttp:okhttp:${okHttpVersion}",
+            okHttp            : "com.squareup.okhttp3:logging-interceptor:${okHttpVersion}",
             gson              : "com.google.code.gson:gson:${gsonVersion}",
             rxJava            : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
             rxAndroid         : "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}",

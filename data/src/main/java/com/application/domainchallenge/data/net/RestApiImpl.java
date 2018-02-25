@@ -57,7 +57,7 @@ public class RestApiImpl implements RestApi {
     }
 
     private String getListingEntitiesFromApi() throws MalformedURLException {
-        return ApiConnection.createGET(API_DOMAIN_URL).requestSyncCall();
+        return ApiConnection.createGET(API_DOMAIN_URL, context).requestSyncCall();
     }
 
     /**
