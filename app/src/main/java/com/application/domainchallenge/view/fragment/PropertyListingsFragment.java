@@ -17,6 +17,7 @@ import com.application.domainchallenge.internal.di.components.ListingComponent;
 import com.application.domainchallenge.model.PropertyTypeListingModel;
 import com.application.domainchallenge.presenter.ListingsListPresenter;
 import com.application.domainchallenge.view.ListingsListView;
+import com.application.domainchallenge.view.adapter.PropertyListItemDataAdapter;
 import com.application.domainchallenge.view.adapter.PropertyTypeListAdapter;
 
 import java.util.ArrayList;
@@ -44,6 +45,10 @@ public class PropertyListingsFragment extends BaseFragment implements
     @Inject
     PropertyTypeListAdapter categoryListDataAdapter;
 
+    //@Inject
+   // PropertyListItemDataAdapter categoryItemListDataAdapter;
+
+
     @BindView(R.id.rl_progress)
     RelativeLayout rl_progress;
 
@@ -60,7 +65,6 @@ public class PropertyListingsFragment extends BaseFragment implements
 
     private LinearLayoutManager mLayoutManager;
 
-    //private ListingsListFragment.ListingListListener listingListListener;
     public PropertyListingsFragment() {
         // TODO Remove set retain and find the best practices for screen orientation
         setRetainInstance(true);
@@ -69,7 +73,6 @@ public class PropertyListingsFragment extends BaseFragment implements
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d(TAG, "### Entering onCreate()");
         this.getComponent(ListingComponent.class).inject(this);
     }
 
@@ -94,6 +97,7 @@ public class PropertyListingsFragment extends BaseFragment implements
         mLayoutManager = new LinearLayoutManager(context(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(mLayoutManager);
         this.listingsListPresenter.setView(this);
+        //this.categoryItemListDataAdapter.setOnPropertyItemClickListener(onPropertyItemClickListener);
         recyclerView.setSaveEnabled(true);
         if (savedInstanceState == null) {
             this.loadPropertyList();
@@ -120,18 +124,7 @@ public class PropertyListingsFragment extends BaseFragment implements
     public void onDestroyView() {
         super.onDestroyView();
         recyclerView.setAdapter(null);
-        //unbinder.unbind();
-
-        /*
-        Unbinder unbinder;
-in onCreateView you call
-
-unbinder = Butterknife.bind(this, root);
-
-and in onDestroyView you need to call
-
-unbinder.unbind();
-         */
+        unbinder.unbind();
     }
 
 
@@ -144,7 +137,6 @@ unbinder.unbind();
     @Override
     public void onDetach() {
         super.onDetach();
-        //this.listingListListener = null;
     }
 
     @Override
@@ -188,5 +180,15 @@ unbinder.unbind();
             this.categoryListDataAdapter.setListingsCollection(listingModelCollection);
         }
     }
+
+    private PropertyListItemDataAdapter.OnPropertyItemClickListener onPropertyItemClickListener =
+            new PropertyListItemDataAdapter.OnPropertyItemClickListener() {
+                @Override
+                public void onPropertyItemClicked(final Integer adId) {
+                    Log.d(TAG, "Entering onPropertyItemClicked on Fragment " + adId);
+                    //Toast.makeText()
+                }
+            };
+
 
 }

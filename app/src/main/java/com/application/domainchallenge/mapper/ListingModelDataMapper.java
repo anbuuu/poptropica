@@ -46,6 +46,9 @@ public class ListingModelDataMapper {
         // Need to add tp
 
         final ListingModel listingModel = new ListingModel();
+        listingModel.setAdId(listing.getAdId());
+        listingModel.setAgencyColour(listing.getAgencyColour());
+        listingModel.setAgencyContactPhoto(listing.getAgencyContactPhoto());
         listingModel.setAgencyLogoUrl(listing.getAgencyLogoUrl());
         listingModel.setDisplayPrice(listing.getDisplayPrice());
         listingModel.setDisplayableAddress(listing.getDisplayableAddress());

@@ -17,6 +17,6 @@ import dagger.Component;
 modules = {ActivityModule.class, ListingModule.class})
 public interface ListingComponent extends ActivityComponent{
     void inject(ListingsListFragment listingsListFragment);
-    void inject(PropertyListingsFragment listingsListFragment);
+    void inject(PropertyListingsFragment propertyListingsFragment);
 
 }

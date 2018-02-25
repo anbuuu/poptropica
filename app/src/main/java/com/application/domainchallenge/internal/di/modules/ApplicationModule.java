@@ -47,10 +47,6 @@ public class ApplicationModule {
         return uiThread;
     }
 
-
-    /*TODO ... check if you need listingscache @Provides
-    */
-
     @Provides
     @Singleton
     ListingRepository provideListingRepository(ListingDataRepository listingDataRepository) {

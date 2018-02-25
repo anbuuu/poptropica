@@ -1,5 +1,6 @@
 package com.application.domainchallenge.view.activity;
 
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -8,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import com.application.domainchallenge.AndroidApplication;
+import com.application.domainchallenge.R;
 import com.application.domainchallenge.internal.di.components.ApplicationComponent;
 import com.application.domainchallenge.internal.di.modules.ActivityModule;
 import com.application.domainchallenge.navigation.Navigator;
@@ -29,6 +31,9 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.getApplicationComponent().inject(this);
+        if (!isTablet()) {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        }
 
     }
 
@@ -36,7 +41,6 @@ public abstract class BaseActivity extends AppCompatActivity {
      * Adds a {@link android.app.Fragment} to this activity's layout
      * @param containerViewId The container view to where add the fragment
      * @param fragment the Fragment to be added
-     * TODO -- move fragment to v4.app.fragment
      */
     protected void addFragment(int containerViewId, Fragment fragment) {
         final FragmentTransaction fragmentTransaction = this.getSupportFragmentManager().beginTransaction();
@@ -58,4 +62,9 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected ActivityModule getActivityModule(){
         return new ActivityModule(this);
     }
+
+    private boolean isTablet() {
+        return getResources().getBoolean(R.bool.is_tablet);
+    }
+
 }

@@ -1,0 +1,31 @@
+<resources>
+
+  <dimen name="rvPaddingTop">2dp</dimen>
+  <dimen name="rvPaddingStart">5dp</dimen>
+  <dimen name="rvPaddingEnd">5dp</dimen>
+  <dimen name="rvLayoutMargin">2dp</dimen>
+
+  <dimen name="txt_itemTitle">18sp</dimen>
+  <dimen name="tv_description_max_lines">4</dimen>
+
+  <!-- News List view -->
+  <dimen name="cv_corner_radius">2dp</dimen>
+  <dimen name="cv_cardElevation">4dp</dimen>
+  <dimen name="cv_content_padding">6dp</dimen>
+
+  <!--Listview rows stuff-->
+  <dimen name="tv_padding_start">6dp</dimen>
+  <dimen name="tv_author_text_size">20sp</dimen>
+  <dimen name="tv_author_padding_end">60dp</dimen>
+
+  <dimen name="tv_headline_text_size">22sp</dimen>
+  <dimen name="tv_description_text_size">20sp</dimen>
+
+  <!-- Related Image -->
+  <dimen name="iv_related_image_width">120dp</dimen>
+  <dimen name="iv_related_image_height">120dp</dimen>
+  <dimen name="padding_start">4dp</dimen>
+  <dimen name="padding_end">4dp</dimen>
+  <dimen name="paddingTop">4dp</dimen>
+
+</resources>

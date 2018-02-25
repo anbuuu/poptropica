@@ -8,12 +8,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.application.domainchallenge.R;
 import com.application.domainchallenge.model.ListingModel;
 import com.bumptech.glide.Glide;
 
 import java.util.List;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -24,13 +27,19 @@ import butterknife.ButterKnife;
 
 public class PropertyListItemDataAdapter extends RecyclerView.Adapter  {
 
-
-
     private List<ListingModel> categoryItemList;
     private Context mContext;
     private String categoryName;
     private static final String TAG = PropertyListItemDataAdapter.class.getSimpleName();
 
+
+    public interface OnPropertyItemClickListener {
+        void onPropertyItemClicked(Integer adId);
+    }
+
+    private OnPropertyItemClickListener onPropertyItemClickListener;
+
+    @Inject
     public PropertyListItemDataAdapter(Context context, List<ListingModel> singleSectionItems, String sectionName) {
         this.categoryItemList = singleSectionItems;
         this.mContext = context;
@@ -38,13 +47,10 @@ public class PropertyListItemDataAdapter extends RecyclerView.Adapter  {
 
     }
 
-
     @Override
     public int getItemViewType(int position) {
         return position;
     }
-
-
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -55,19 +61,13 @@ public class PropertyListItemDataAdapter extends RecyclerView.Adapter  {
         Log.d(TAG, "Entering onCreateView Holder with View Type " + viewType);
 
 
-
         final View view;
         if ( categoryName.equalsIgnoreCase("STANDARD")) {
             view = inflater.inflate(R.layout.row_listing_normal, null );
             viewHolder = new StandardListingViewHolder(view);
-
-
-
-
         } else if ( categoryName.equalsIgnoreCase("PREMIUM")) {
             view = inflater.inflate(R.layout.row_listing_elite, null );
             viewHolder = new PremiumListingViewHolder(view);
-
         }
 
         return viewHolder;
@@ -80,6 +80,7 @@ public class PropertyListItemDataAdapter extends RecyclerView.Adapter  {
         Log.d(TAG, "Enteirng onBindViewHolder with desc " +
                 listingModel.getTruncatedDescription());
 
+        Toast.makeText(mContext, "Toast. Test Message ", Toast.LENGTH_SHORT).show();
 
 
         if ( holder instanceof StandardListingViewHolder) {
@@ -128,6 +129,18 @@ public class PropertyListItemDataAdapter extends RecyclerView.Adapter  {
                     .into(((PremiumListingViewHolder) holder).iv_listing_image_elite);
         }
 
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, "Entering onClick with Data " + listingModel.getAdId() );
+                if ( PropertyListItemDataAdapter.this.onPropertyItemClickListener != null ) {
+                    Toast.makeText(mContext, "Item Clicked is " + listingModel.getAdId(), Toast.LENGTH_SHORT).show();
+                    PropertyListItemDataAdapter.this.onPropertyItemClickListener.
+                            onPropertyItemClicked(listingModel.getAdId());
+                }
+            }
+        });
+
 
     }
 
@@ -137,56 +150,45 @@ public class PropertyListItemDataAdapter extends RecyclerView.Adapter  {
 
     }
 
+    public void setOnPropertyItemClickListener(OnPropertyItemClickListener
+                                                       onPropertyItemClickListener) {
+        this.onPropertyItemClickListener = onPropertyItemClickListener;
+    }
 
-    public static class StandardListingViewHolder extends RecyclerView.ViewHolder{
-
-        @BindView(R.id.listing_price)
-        TextView tv_listing_price;
-
-        @BindView(R.id.total_rooms)
-        TextView tv_total_rooms;
-
-        @BindView(R.id.listing_address)
-        TextView tv_listing_address;
-
-        @BindView(R.id.listing_first_retina_thumbnail)
-        ImageView iv_listing_image_normal;
-
-        @BindView(R.id.agency_logo)
-        ImageView iv_agency_logo;
-
-        // TODO Will need two different View Holders because of the following
-        // issue that second_retina... has to be commented
-        // if normal viewing takes place
-
-
-        public StandardListingViewHolder(View itemView) {
+    public class StandardListingViewHolder extends BaseViewHolder {
+       public StandardListingViewHolder(View itemView) {
             super(itemView);
-            ButterKnife.bind(this, itemView);
         }
     }
 
-    public static class PremiumListingViewHolder extends RecyclerView.ViewHolder{
-
-        @BindView(R.id.listing_price)
-        TextView tv_listing_price;
-
-        @BindView(R.id.total_rooms)
-        TextView tv_total_rooms;
-
-        @BindView(R.id.listing_address)
-        TextView tv_listing_address;
-
-        @BindView(R.id.listing_first_retina_thumbnail)
-        ImageView iv_listing_image_normal;
-
-        @BindView(R.id.agency_logo)
-        ImageView iv_agency_logo;
+    public class PremiumListingViewHolder extends BaseViewHolder {
 
         @BindView(R.id.listing_second_retina_thumbnail)
         ImageView iv_listing_image_elite;
 
         public PremiumListingViewHolder(View itemView) {
+            super(itemView);
+        }
+    }
+
+    public abstract class BaseViewHolder extends RecyclerView.ViewHolder {
+
+        @BindView(R.id.listing_price)
+        TextView tv_listing_price;
+
+        @BindView(R.id.total_rooms)
+        TextView tv_total_rooms;
+
+        @BindView(R.id.listing_address)
+        TextView tv_listing_address;
+
+        @BindView(R.id.listing_first_retina_thumbnail)
+        ImageView iv_listing_image_normal;
+
+        @BindView(R.id.agency_logo)
+        ImageView iv_agency_logo;
+
+        public BaseViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
