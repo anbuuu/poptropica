@@ -1,16 +1,14 @@
+
 package com.application.domainchallenge.data.entity;
 
-import com.application.domainchallenge.domain.Feature;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
-/**
- * Listings Entity used in the Data Layer
- */
-
-public class ListingEntity {
+public class ListingEntity implements Serializable
+{
 
     @SerializedName("AdId")
     @Expose
@@ -63,7 +61,6 @@ public class ListingEntity {
     @SerializedName("EnquiryTimeStamp")
     @Expose
     private Object enquiryTimeStamp;
-    //TODO -- move to feature entity
     @SerializedName("Features")
     @Expose
     private List<Feature> features = null;
@@ -608,7 +605,6 @@ public class ListingEntity {
     public void setVideoUrl(Object videoUrl) {
         this.videoUrl = videoUrl;
     }
-
 
 
 }

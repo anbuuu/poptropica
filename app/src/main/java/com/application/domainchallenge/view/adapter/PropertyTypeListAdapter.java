@@ -37,7 +37,7 @@ public class PropertyTypeListAdapter extends RecyclerView.Adapter<PropertyTypeLi
     private List<PropertyTypeListingModel> listingsCollection;
     SnapHelper snapHelper = new LinearSnapHelper();
 
-    // TODO move the Arraylist to a Listing Type Class
+    // TODO move the Arraylist to a ListingEntity Type Class
     @Inject
     public PropertyTypeListAdapter(Context context) {
 

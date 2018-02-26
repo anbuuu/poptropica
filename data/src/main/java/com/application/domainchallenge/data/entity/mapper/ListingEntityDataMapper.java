@@ -31,17 +31,19 @@ public class ListingEntityDataMapper {
      * a Collection of {@link com.application.domainchallenge.domain.Listing}
      */
     public List<Listing> transform(Example listingEntityCollection) {
-        //Collection<ListingEntity> listCollection = listingEntityCollection.getListingResults().getListings();
-
-        Log.d(TAG, "Entering transform with collection = " + listingEntityCollection.getListingResults().getListings().size());
-
         final List<Listing> listingsList = new ArrayList<>(20); // TODO why magic Number ?
-        for (com.application.domainchallenge.data.entity.Listing listingEntity : listingEntityCollection.getListingResults().getListings()) {
-            final Listing listing = transform(listingEntity);
-            if (listing != null) {
-                listingsList.add(listing);
+
+        if ( listingEntityCollection != null && listingEntityCollection.getListingResults() != null) {
+            Log.d(TAG, "Entering transform with collection = " + listingEntityCollection.getListingResults().getListingEntities().size());
+
+            for (ListingEntity listingEntityEntity : listingEntityCollection.getListingResults().getListingEntities()) {
+                final Listing listing = transform(listingEntityEntity);
+                if (listing != null) {
+                    listingsList.add(listing);
+                }
             }
         }
+
 
         // Need to Map Example into List Listings
         return listingsList;
@@ -50,67 +52,67 @@ public class ListingEntityDataMapper {
     /**
      * Transform a {@link ListingEntity} into an {@link Listing}
      *
-     * @param listingEntity
+     * @param listingEntityEntity
      * @return
      */
-    public Listing transform(com.application.domainchallenge.data.entity.Listing listingEntity) {
+    public Listing transform(ListingEntity listingEntityEntity) {
         Listing listing = null;
-        if (listingEntity != null) {
+        if (listingEntityEntity != null) {
             listing = new Listing(); //TODO verify this
-            listing.setAdId(listingEntity.getAdId());
-            listing.setAgencyColour(listingEntity.getAgencyColour());
-            listing.setAgencyContactPhoto(listingEntity.getAgencyContactPhoto());
-            listing.setAgencyID(listingEntity.getAgencyID());
-            listing.setAgencyLogoUrl(listingEntity.getAgencyLogoUrl());
-            listing.setArea(listingEntity.getArea());
-            listing.setAuctionDate(listingEntity.getAuctionDate());
-            listing.setAvailableFrom(listingEntity.getAvailableFrom());
-            listing.setBedrooms(listingEntity.getBedrooms());
-            listing.setBathrooms(listingEntity.getBathrooms());
-            listing.setCarspaces(listingEntity.getCarspaces());
-            listing.setDateFirstListed(listingEntity.getDateFirstListed());
-            listing.setDateUpdated(listingEntity.getDateUpdated());
-            listing.setDescription(listingEntity.getDescription());
-            listing.setDisplayPrice(listingEntity.getDisplayPrice());
-            listing.setDisplayableAddress(listingEntity.getDisplayableAddress());
-            listing.setEnquiryTimeStamp(listingEntity.getEnquiryTimeStamp());
+            listing.setAdId(listingEntityEntity.getAdId());
+            listing.setAgencyColour(listingEntityEntity.getAgencyColour());
+            listing.setAgencyContactPhoto(listingEntityEntity.getAgencyContactPhoto());
+            listing.setAgencyID(listingEntityEntity.getAgencyID());
+            listing.setAgencyLogoUrl(listingEntityEntity.getAgencyLogoUrl());
+            listing.setArea(listingEntityEntity.getArea());
+            listing.setAuctionDate(listingEntityEntity.getAuctionDate());
+            listing.setAvailableFrom(listingEntityEntity.getAvailableFrom());
+            listing.setBedrooms(listingEntityEntity.getBedrooms());
+            listing.setBathrooms(listingEntityEntity.getBathrooms());
+            listing.setCarspaces(listingEntityEntity.getCarspaces());
+            listing.setDateFirstListed(listingEntityEntity.getDateFirstListed());
+            listing.setDateUpdated(listingEntityEntity.getDateUpdated());
+            listing.setDescription(listingEntityEntity.getDescription());
+            listing.setDisplayPrice(listingEntityEntity.getDisplayPrice());
+            listing.setDisplayableAddress(listingEntityEntity.getDisplayableAddress());
+            listing.setEnquiryTimeStamp(listingEntityEntity.getEnquiryTimeStamp());
             listing.setFeatures(listing.getFeatures());
-            listing.setFreshnessLevel(listingEntity.getFreshnessLevel());
-            listing.setGroupCount(listingEntity.getGroupCount());
-            listing.setGroupNo(listingEntity.getGroupNo());
-            listing.setHasEnhancedVideoUrl(listingEntity.getHasEnhancedVideoUrl());
-            listing.setHeadline(listingEntity.getHeadline());
-            listing.setHomepassEnabled(listingEntity.getHomepassEnabled());
-            listing.setImageUrls(listingEntity.getImageUrls());
-            listing.setImages(listingEntity.getImages());
-            listing.setInspectionDate(listingEntity.getInspectionDate());
-            listing.setInspections(listingEntity.getInspections());
-            listing.setIsBranded(listingEntity.getIsBranded());
-            listing.setIsElite(listingEntity.getIsElite());
-            listing.setIsPriority(listingEntity.getIsPriority());
-            listing.setLatitude(listingEntity.getLatitude());
-            listing.setListingPrice(listingEntity.getListingPrice());
-            listing.setListingStatistics(listingEntity.getListingStatistics());
-            listing.setListingType(listingEntity.getListingType());
-            listing.setListingTypeString(listingEntity.getListingTypeString());
-            listing.setLongitude(listingEntity.getLongitude());
-            listing.setMapCertainty(listingEntity.getMapCertainty());
-            listing.setMode(listingEntity.getMode());
-            listing.setProjectDetails(listingEntity.getProjectDetails());
-            listing.setPropertyType(listingEntity.getPropertyType());
-            listing.setPropertyTypeList(listingEntity.getPropertyTypeList());
-            listing.setRegion(listingEntity.getRegion());
-            listing.setRetinaDisplayThumbUrl(listingEntity.getRetinaDisplayThumbUrl());
-            listing.setSecondRetinaDisplayThumbUrl(listingEntity.getSecondRetinaDisplayThumbUrl());
-            listing.setSecondThumbUrl(listingEntity.getSecondThumbUrl());
-            listing.setState(listingEntity.getState());
-            listing.setStatusLabel(listingEntity.getStatusLabel());
-            listing.setSuburb(listingEntity.getSuburb());
-            listing.setThumbUrl(listingEntity.getThumbUrl());
-            listing.setTopSpotEligible(listingEntity.getTopSpotEligible());
-            listing.setTruncatedDescription(listingEntity.getTruncatedDescription());
-            listing.setUnderOfferOrContract(listingEntity.getUnderOfferOrContract());
-            listing.setVideoUrl(listingEntity.getVideoUrl());
+            listing.setFreshnessLevel(listingEntityEntity.getFreshnessLevel());
+            listing.setGroupCount(listingEntityEntity.getGroupCount());
+            listing.setGroupNo(listingEntityEntity.getGroupNo());
+            listing.setHasEnhancedVideoUrl(listingEntityEntity.getHasEnhancedVideoUrl());
+            listing.setHeadline(listingEntityEntity.getHeadline());
+            listing.setHomepassEnabled(listingEntityEntity.getHomepassEnabled());
+            listing.setImageUrls(listingEntityEntity.getImageUrls());
+            listing.setImages(listingEntityEntity.getImages());
+            listing.setInspectionDate(listingEntityEntity.getInspectionDate());
+            listing.setInspections(listingEntityEntity.getInspections());
+            listing.setIsBranded(listingEntityEntity.getIsBranded());
+            listing.setIsElite(listingEntityEntity.getIsElite());
+            listing.setIsPriority(listingEntityEntity.getIsPriority());
+            listing.setLatitude(listingEntityEntity.getLatitude());
+            listing.setListingPrice(listingEntityEntity.getListingPrice());
+            listing.setListingStatistics(listingEntityEntity.getListingStatistics());
+            listing.setListingType(listingEntityEntity.getListingType());
+            listing.setListingTypeString(listingEntityEntity.getListingTypeString());
+            listing.setLongitude(listingEntityEntity.getLongitude());
+            listing.setMapCertainty(listingEntityEntity.getMapCertainty());
+            listing.setMode(listingEntityEntity.getMode());
+            listing.setProjectDetails(listingEntityEntity.getProjectDetails());
+            listing.setPropertyType(listingEntityEntity.getPropertyType());
+            listing.setPropertyTypeList(listingEntityEntity.getPropertyTypeList());
+            listing.setRegion(listingEntityEntity.getRegion());
+            listing.setRetinaDisplayThumbUrl(listingEntityEntity.getRetinaDisplayThumbUrl());
+            listing.setSecondRetinaDisplayThumbUrl(listingEntityEntity.getSecondRetinaDisplayThumbUrl());
+            listing.setSecondThumbUrl(listingEntityEntity.getSecondThumbUrl());
+            listing.setState(listingEntityEntity.getState());
+            listing.setStatusLabel(listingEntityEntity.getStatusLabel());
+            listing.setSuburb(listingEntityEntity.getSuburb());
+            listing.setThumbUrl(listingEntityEntity.getThumbUrl());
+            listing.setTopSpotEligible(listingEntityEntity.getTopSpotEligible());
+            listing.setTruncatedDescription(listingEntityEntity.getTruncatedDescription());
+            listing.setUnderOfferOrContract(listingEntityEntity.getUnderOfferOrContract());
+            listing.setVideoUrl(listingEntityEntity.getVideoUrl());
 
         }
         return listing;

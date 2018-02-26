@@ -12,7 +12,7 @@ public class ListingResults implements Serializable
 
     @SerializedName("Listings")
     @Expose
-    private List<Listing> listings = null;
+    private List<ListingEntity> listingEntities = null;
     @SerializedName("ResultsReturned")
     @Expose
     private Integer resultsReturned;
@@ -33,12 +33,12 @@ public class ListingResults implements Serializable
     private Integer topSpotListingsCount;
     private final static long serialVersionUID = 6730870404237250099L;
 
-    public List<Listing> getListings() {
-        return listings;
+    public List<ListingEntity> getListingEntities() {
+        return listingEntities;
     }
 
-    public void setListings(List<Listing> listings) {
-        this.listings = listings;
+    public void setListingEntities(List<ListingEntity> listingEntities) {
+        this.listingEntities = listingEntities;
     }
 
     public Integer getResultsReturned() {

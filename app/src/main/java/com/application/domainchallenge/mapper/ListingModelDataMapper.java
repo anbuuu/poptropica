@@ -31,7 +31,7 @@ public class ListingModelDataMapper {
      */
 
     public static final String TAG = ListingModelDataMapper.class.getSimpleName();
-    //public ListingModel transform(Listing listing) {
+    //public ListingModel transform(ListingEntity listing) {
     public ListingModel transform(Listing listing) {
 
         if ( listing == null) {
@@ -70,10 +70,10 @@ public class ListingModelDataMapper {
      * Transform a collection of {@link Listing} into a
      * collection of {@link ListingModel}
      */
-   // public Collection<ListingModel> transform(Collection<Listing> listingCollection) {
+   // public Collection<ListingModel> transform(Collection<ListingEntity> listingCollection) {
     public Collection<PropertyTypeListingModel> transform(Collection<Listing> listingCollection){
 
-        // Listing is retrieved completely
+        // ListingEntity is retrieved completely
         // Need to transform into a PropertyTypeListings object
         // for premium it should be
 

@@ -102,7 +102,7 @@ public class ListingsAdapter extends RecyclerView.Adapter {
 
         // Extend from a abstract listingview holder like STandard and extend to premium
        /* if ( holder instanceof StandardListingViewHolder) {
-            Log.d(TAG, "AAA Standard Listing View Holder instance ");
+            Log.d(TAG, "AAA Standard ListingEntity View Holder instance ");
 
             Glide.with(mContext)
                     .load(listingModel.getRetinaDisplayThumbUrl())
@@ -123,7 +123,7 @@ public class ListingsAdapter extends RecyclerView.Adapter {
                     .into(((StandardListingViewHolder) holder).iv_agency_logo);
 
         } else if ( holder instanceof  PremiumListingViewHolder) {
-            Log.d(TAG, "AAA premium Listing View Holder instance ");
+            Log.d(TAG, "AAA premium ListingEntity View Holder instance ");
             Glide.with(mContext)
                     .load(listingModel.getRetinaDisplayThumbUrl())
                     .fitCenter()

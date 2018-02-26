@@ -91,7 +91,7 @@ public class ListingsListPresenter implements Presenter {
         this.viewListView.showError(errorMessage);
     }
 
-   /* private void showListingsCollectionView(Collection<Listing> listingsCollection) {
+   /* private void showListingsCollectionView(Collection<ListingEntity> listingsCollection) {
         final Collection<PropertyTypeListingModel> listingsModelCollection =
                 this.listingModelDataMapper.transform(listingsCollection);
         this.viewListView.renderListingsList(listingsModelCollection);

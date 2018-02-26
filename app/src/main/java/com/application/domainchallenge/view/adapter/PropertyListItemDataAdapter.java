@@ -84,7 +84,7 @@ public class PropertyListItemDataAdapter extends RecyclerView.Adapter  {
 
 
         if ( holder instanceof StandardListingViewHolder) {
-            Log.d(TAG, "AAA Standard Listing View Holder instance ");
+            Log.d(TAG, "AAA Standard ListingEntity View Holder instance ");
 
             Glide.with(mContext)
                     .load(listingModel.getRetinaDisplayThumbUrl())
@@ -104,7 +104,7 @@ public class PropertyListItemDataAdapter extends RecyclerView.Adapter  {
                     .centerCrop()
                     .into(((StandardListingViewHolder) holder).iv_agency_logo);
         } else if ( holder instanceof PremiumListingViewHolder ) {
-            Log.d(TAG, "AAA premium Listing View Holder instance ");
+            Log.d(TAG, "AAA premium ListingEntity View Holder instance ");
             Glide.with(mContext)
                     .load(listingModel.getRetinaDisplayThumbUrl())
                     .fitCenter()
