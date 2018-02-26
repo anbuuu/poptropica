@@ -2,7 +2,7 @@ package com.application.domainchallenge.data.entity.mapper;
 
 import android.util.Log;
 
-import com.application.domainchallenge.data.entity.Example;
+import com.application.domainchallenge.data.entity.PropertyResults;
 import com.application.domainchallenge.data.entity.ListingEntity;
 import com.application.domainchallenge.domain.Listing;
 
@@ -30,7 +30,7 @@ public class ListingEntityDataMapper {
      * Transform a List of {@link com.application.domainchallenge.data.entity.ListingEntity} to
      * a Collection of {@link com.application.domainchallenge.domain.Listing}
      */
-    public List<Listing> transform(Example listingEntityCollection) {
+    public List<Listing> transform(PropertyResults listingEntityCollection) {
         final List<Listing> listingsList = new ArrayList<>(20); // TODO why magic Number ?
 
         if ( listingEntityCollection != null && listingEntityCollection.getListingResults() != null) {
@@ -45,7 +45,7 @@ public class ListingEntityDataMapper {
         }
 
 
-        // Need to Map Example into List Listings
+        // Need to Map PropertyResults into List Listings
         return listingsList;
     }
 

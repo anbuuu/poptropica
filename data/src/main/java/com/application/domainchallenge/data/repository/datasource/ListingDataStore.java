@@ -1,6 +1,6 @@
 package com.application.domainchallenge.data.repository.datasource;
 
-import com.application.domainchallenge.data.entity.Example;
+import com.application.domainchallenge.data.entity.PropertyResults;
 
 import io.reactivex.Observable;
 
@@ -10,9 +10,7 @@ import io.reactivex.Observable;
 
 public interface ListingDataStore {
     /**
-     * Get an {@link io.reactivex.Observable} which will emit a list of {@link com.application.domainchallenge.data.entity.ListingEntity}
+     * Get an {@link io.reactivex.Observable} which will emit {@link PropertyResults}
      */
-    Observable<Example> listingEntityList();
-
-
+    Observable<PropertyResults> listingEntityList();
 }

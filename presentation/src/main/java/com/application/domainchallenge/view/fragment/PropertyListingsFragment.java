@@ -2,6 +2,7 @@ package com.application.domainchallenge.view.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -62,6 +63,9 @@ public class PropertyListingsFragment extends BaseFragment implements
     RecyclerView recyclerView;
     private ArrayList<PropertyTypeListingModel> categoryList;
     Unbinder unbinder;
+    private Parcelable list_state;
+    public final static String LIST_STATE_KEY = "recycler_list_state";
+
 
     private LinearLayoutManager mLayoutManager;
 
@@ -74,6 +78,7 @@ public class PropertyListingsFragment extends BaseFragment implements
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.getComponent(ListingComponent.class).inject(this);
+
     }
 
     @Nullable
@@ -112,12 +117,16 @@ public class PropertyListingsFragment extends BaseFragment implements
     public void onResume() {
         super.onResume();
         this.listingsListPresenter.resume();
+        if ( list_state != null ) {
+            mLayoutManager.onRestoreInstanceState(list_state);
+        }
     }
 
     @Override
     public void onPause() {
         super.onPause();
         this.listingsListPresenter.pause();
+        list_state = recyclerView.getLayoutManager().onSaveInstanceState();
     }
 
     @Override
@@ -180,6 +189,15 @@ public class PropertyListingsFragment extends BaseFragment implements
             this.categoryListDataAdapter.setListingsCollection(listingModelCollection);
         }
     }
+
+   /* @Override
+    public void onSaveInstanceState(Bundle outState) {
+        Log.d(TAG, "Entering onSavedInstanceState");
+        super.onSaveInstanceState(outState);
+        list_state = recyclerView.getLayoutManager().onSaveInstanceState();
+        outState.putParcelable(LIST_STATE_KEY, list_state);
+       // outState.putParcelableArrayList(LIST_STATE_KEY, relatedRows);
+    }*/
 
     private PropertyListItemDataAdapter.OnPropertyItemClickListener onPropertyItemClickListener =
             new PropertyListItemDataAdapter.OnPropertyItemClickListener() {

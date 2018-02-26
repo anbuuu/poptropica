@@ -5,7 +5,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.util.Log;
 
-import com.application.domainchallenge.data.entity.Example;
+import com.application.domainchallenge.data.entity.PropertyResults;
 import com.application.domainchallenge.data.entity.mapper.ListingEntityJsonMapper;
 import com.application.domainchallenge.data.exception.NetworkConnectionException;
 
@@ -14,7 +14,7 @@ import java.net.MalformedURLException;
 import io.reactivex.Observable;
 
 /**
- * Created by anbu.ezhilan on 15/2/18.
+ * {@link RestApi} Implementation or retrieving data from Network
  */
 
 public class RestApiImpl implements RestApi {
@@ -35,8 +35,7 @@ public class RestApiImpl implements RestApi {
 
 
     @Override
-    //public Observable<List<ListingEntity>> listingEntityList() {
-    public Observable<Example> listingEntityList() {
+    public Observable<PropertyResults> listingEntityList() {
 
         return Observable.create(emitter -> {
             if ( isThereInternetConnection()) {
@@ -72,7 +71,6 @@ public class RestApiImpl implements RestApi {
                 (ConnectivityManager) this.context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
         isConnected = (networkInfo != null && networkInfo.isConnectedOrConnecting());
-
         return isConnected;
     }
 

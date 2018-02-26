@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
-public class Example implements Serializable
+public class PropertyResults implements Serializable
 {
 
     @SerializedName("Ads")

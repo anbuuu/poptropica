@@ -8,7 +8,7 @@ import com.application.domainchallenge.internal.di.modules.ActivityModule;
 import dagger.Component;
 
 /**
- * Created by anbu.ezhilan on 16/2/18.
+ * Base Component upon which
  */
 
 @PerActivity

@@ -1,6 +1,6 @@
 package com.application.domainchallenge.data.entity.mapper;
 
-import com.application.domainchallenge.data.entity.Example;
+import com.application.domainchallenge.data.entity.PropertyResults;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
@@ -31,9 +31,9 @@ public class ListingEntityJsonMapper {
      * @throws com.google.gson.JsonSyntaxException if the
      * json string is not a valid structure
      */
-    public Example transformListingEntityCollection(String listingJsonResponse)
+    public PropertyResults transformListingEntityCollection(String listingJsonResponse)
             throws JsonSyntaxException {
-        final Type listofExampleEntityType = new TypeToken<Example>() {}.getType();
+        final Type listofExampleEntityType = new TypeToken<PropertyResults>() {}.getType();
         return this.gson.fromJson(listingJsonResponse, listofExampleEntityType);
     }
 

@@ -14,13 +14,11 @@ import javax.inject.Singleton;
 import io.reactivex.Observable;
 
 /**
- * Created by anbu.ezhilan on 15/2/18.
+ * {@link ListingRepository} for Retrieving Listings Data
  */
 
 @Singleton
 public class ListingDataRepository implements ListingRepository {
-
-
 
     private final ListingDataStoreFactory listingDataStoreFactory;
     private final ListingEntityDataMapper listingEntityDataMapper;

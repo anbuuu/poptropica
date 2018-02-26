@@ -1,6 +1,6 @@
 package com.application.domainchallenge.data.entity.mapper;
 
-import com.application.domainchallenge.data.entity.Example;
+import com.application.domainchallenge.data.entity.PropertyResults;
 import com.google.gson.JsonSyntaxException;
 
 import org.junit.Before;
@@ -14,10 +14,6 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.CoreMatchers.equalTo;
 
-
-/**
- * Created by anbu.ezhilan on 26/2/18.
- */
 
 @RunWith(MockitoJUnitRunner.class)
 public class ListingEntityJsonMapperTest {
@@ -150,7 +146,7 @@ public class ListingEntityJsonMapperTest {
 
     @Test
     public void testTransformListingEntityHappyCase() {
-        Example listingEntity =
+        PropertyResults listingEntity =
                 listingEntityJsonMapper.transformListingEntityCollection(JSON_RESPONSE_PROPERTY_LISTINGS);
 
         assertThat(listingEntity.getListingResults().getListingEntities().get(0).getAdId(),

@@ -1,7 +1,7 @@
 package com.application.domainchallenge.data.exception;
 
 /**
- * Created by anbu.ezhilan on 15/2/18.
+ * Exception thrown by the application when a Listings is not Found
  */
 
 public class ListingNotFoundException extends Exception {

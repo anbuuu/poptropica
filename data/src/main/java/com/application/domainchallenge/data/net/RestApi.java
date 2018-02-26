@@ -1,6 +1,6 @@
 package com.application.domainchallenge.data.net;
 
-import com.application.domainchallenge.data.entity.Example;
+import com.application.domainchallenge.data.entity.PropertyResults;
 
 import io.reactivex.Observable;
 
@@ -14,8 +14,8 @@ public interface RestApi {
     String API_DOMAIN_URL = "https://rest.domain.com.au/searchservice.svc/mapsearch?mode=buy&sub=Bondi&pcodes=2026&state=NSW";
     /**
      * Retrieves an {@link io.reactivex.Observable} which will emit a link of
-     * {@link Example}
+     * {@link PropertyResults}
      */
-    Observable<Example> listingEntityList();
+    Observable<PropertyResults> listingEntityList();
 
 }

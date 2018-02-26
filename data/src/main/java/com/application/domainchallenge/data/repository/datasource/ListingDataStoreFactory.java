@@ -12,7 +12,9 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 /**
- * Created by anbu.ezhilan on 15/2/18.
+ * Factory that creates different implementations of {@link ListingDataStore}
+ * It's only from Cloud as of this version, this is a placeholder for future
+ * factory implementations
  */
 
 @Singleton
@@ -21,15 +23,13 @@ public class ListingDataStoreFactory {
     private final Context context;
 
     @Inject
-    ListingDataStoreFactory(@NotNull Context context
-                            ) {
+    ListingDataStoreFactory(@NotNull Context context) {
         this.context = context;
     }
 
     public ListingDataStore createCloudDataStore() {
         final ListingEntityJsonMapper listingEntityJsonMapper = new ListingEntityJsonMapper();
         final RestApi restApi = new RestApiImpl(this.context, listingEntityJsonMapper);
-
         return new CloudListingDataStore(restApi);
     }
 

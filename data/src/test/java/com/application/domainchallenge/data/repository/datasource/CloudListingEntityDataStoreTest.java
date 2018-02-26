@@ -10,11 +10,6 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 import static org.mockito.Mockito.verify;
 
-/**
- * Created by anbu.ezhilan on 15/2/18.
- */
-
-
 @RunWith(MockitoJUnitRunner.class)
 public class CloudListingEntityDataStoreTest {
 
