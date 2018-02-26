@@ -59,6 +59,7 @@
     <dimen name="img_big_layout_height">113dp</dimen>
 
     <dimen name="txt_itemTitle">18sp</dimen>
+    <dimen name="categoryHeaderPadding">2dp</dimen>
 
 
 </resources>

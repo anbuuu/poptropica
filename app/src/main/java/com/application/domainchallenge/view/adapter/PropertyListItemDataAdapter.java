@@ -80,7 +80,7 @@ public class PropertyListItemDataAdapter extends RecyclerView.Adapter  {
         Log.d(TAG, "Enteirng onBindViewHolder with desc " +
                 listingModel.getTruncatedDescription());
 
-        Toast.makeText(mContext, "Toast. Test Message ", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(mContext, "Toast. Test Message ", Toast.LENGTH_SHORT).show();
 
 
         if ( holder instanceof StandardListingViewHolder) {
@@ -134,7 +134,7 @@ public class PropertyListItemDataAdapter extends RecyclerView.Adapter  {
             public void onClick(View v) {
                 Log.d(TAG, "Entering onClick with Data " + listingModel.getAdId() );
                 if ( PropertyListItemDataAdapter.this.onPropertyItemClickListener != null ) {
-                    Toast.makeText(mContext, "Item Clicked is " + listingModel.getAdId(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(holder.itemView.getContext(), "Item Clicked is " + listingModel.getAdId(), Toast.LENGTH_SHORT).show();
                     PropertyListItemDataAdapter.this.onPropertyItemClickListener.
                             onPropertyItemClicked(listingModel.getAdId());
                 }

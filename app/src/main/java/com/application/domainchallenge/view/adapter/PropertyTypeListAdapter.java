@@ -2,7 +2,9 @@ package com.application.domainchallenge.view.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.LinearSnapHelper;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SnapHelper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -33,6 +35,7 @@ public class PropertyTypeListAdapter extends RecyclerView.Adapter<PropertyTypeLi
     private Context mContext;
     private final String TAG = PropertyTypeListAdapter.class.getSimpleName();
     private List<PropertyTypeListingModel> listingsCollection;
+    SnapHelper snapHelper = new LinearSnapHelper();
 
     // TODO move the Arraylist to a Listing Type Class
     @Inject
@@ -64,6 +67,10 @@ public class PropertyTypeListAdapter extends RecyclerView.Adapter<PropertyTypeLi
         holder.recycler_view_list.setAdapter(propertyListItemDataAdapter);
         holder.recycler_view_list.setNestedScrollingEnabled(false);
         holder.recycler_view_list.setSaveEnabled(true);
+
+
+        snapHelper.attachToRecyclerView(holder.recycler_view_list);
+
 
 
         holder.recycler_view_list.setOnTouchListener(new View.OnTouchListener() {

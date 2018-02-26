@@ -9,9 +9,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.CoreMatchers.is;
 
-/**
- * Created by anbu.ezhilan on 22/2/18.
- */
+
 
 
 @RunWith(MockitoJUnitRunner.class)
@@ -29,10 +27,7 @@ public class ListingEntityDataMapperTest {
     @Test
     public void testTransformListingEntity() {
         Listing listing = createFakeListingEntity();
-
         assertThat(listing.getAdId(), is(FAKE_AdId));
-
-
     }
 
     private Listing createFakeListingEntity() {

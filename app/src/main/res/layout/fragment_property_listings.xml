@@ -22,6 +22,7 @@
         android:paddingRight="@dimen/rvPaddingRight"
         />
 
+        <!-- TODO have a look at this -->
     <include layout="@layout/view_progress" />
 
     <include layout="@layout/view_retry" />

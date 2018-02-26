@@ -27,5 +27,6 @@
   <dimen name="padding_start">4dp</dimen>
   <dimen name="padding_end">4dp</dimen>
   <dimen name="paddingTop">4dp</dimen>
+    <dimen name="categoryHeaderPadding">2dp</dimen>
 
 </resources>
