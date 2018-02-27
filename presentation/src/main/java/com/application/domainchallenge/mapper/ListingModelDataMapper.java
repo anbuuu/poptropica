@@ -14,7 +14,8 @@ import java.util.Collections;
 import javax.inject.Inject;
 
 /**
- * Created by anbu.ezhilan on 16/2/18.
+ * Mapper class used to transform {@link Listing} in the domain layer to {@link ListingModel}
+ * in the presentation layer
  */
 @PerActivity
 public class ListingModelDataMapper {
@@ -38,13 +39,6 @@ public class ListingModelDataMapper {
             throw new IllegalArgumentException("cannot transform a null value");
         }
 
-        // bedrooms, carspaces, displayprice,
-        // displayable address, truncated description
-        // retinathumbnailurl, secondretinathumbnailurl
-        // isElite
-
-        // Need to add tp
-
         final ListingModel listingModel = new ListingModel();
         listingModel.setAdId(listing.getAdId());
         listingModel.setAgencyColour(listing.getAgencyColour());
@@ -61,24 +55,15 @@ public class ListingModelDataMapper {
         listingModel.setAgencyLogoUrl(listing.getAgencyLogoUrl());
         listingModel.setIsElite(listing.getIsElite());
 
-        //final PropertyTypeListingModel propertyTypeListingModel = new PropertyTypeListingModel(propertyType, listingModel);
         return listingModel;
     }
 
-    //public Collection<>
     /**
      * Transform a collection of {@link Listing} into a
      * collection of {@link ListingModel}
      */
-   // public Collection<ListingModel> transform(Collection<ListingEntity> listingCollection) {
     public Collection<PropertyTypeListingModel> transform(Collection<Listing> listingCollection){
 
-        // ListingEntity is retrieved completely
-        // Need to transform into a PropertyTypeListings object
-        // for premium it should be
-
-        //Collection<ListingModel> listingModelCollection;
-        PropertyTypeListingModel propertyTypeListingModel = null;
         Collection<PropertyTypeListingModel> propertyTypeListingModelCollection;
         Collection<ListingModel> premiumListingModelCollection;
         Collection<ListingModel> standardListingModelCollection;
@@ -92,48 +77,19 @@ public class ListingModelDataMapper {
             premiumListingModelCollection = new ArrayList<>();
             standardListingModelCollection = new ArrayList<>();
 
-            // Check for Elite
-
 
             for ( Listing listing : listingCollection ) {
-
-                // Gets the whole listings
-                // in this case for first instance
                 if ( listing.getIsElite() != null && listing.getIsElite() == 1 ) {
-                    //listingModelCollection = new PropertyTypeListingModel();
-                    //listingModelCollection.add(transform(listing));
-
-                    // You need to have a collection of PropertyTypeListingModel which is literally
-                    // {"PREMIUM", "{ListingModel{ } }
-                    // so you need list of listingmodels before you create a PropertyTypeListingModel
-                    // so, first transform the listings and get the items which is the listing
-                    // First Time it comes .. Add's to the List
-
-                    // now how do you add a new
                     premiumListingModelCollection.add(transform(listing));
-
-                   /* if ( propertyTypeListingModel == null ) {
-                        // Create new instance
-                        propertyTypeListingModel = new PropertyTypeListingModel("PREMIUM", premiumListingModelCollection);
-                    }*/
-                    //propertyTypeListingModelCollection.add(propertyTypeListingModel);
                 } else if ( listing.getIsElite() != null && listing.getIsElite() == 0 ) {
                     standardListingModelCollection.add(transform(listing));
-                    /*if ( propertyTypeListingModel == null ) {
-                        propertyTypeListingModel = new PropertyTypeListingModel("STANDARD", standardListingModelCollection);
-
-                    }*/
-                    //propertyTypeListingModelCollection.add(propertyTypeListingModel);
-
                 }
-
-
-
             }
 
             Log.d(TAG, "The standard listing is " + standardListingModelCollection.size() + " and premium is " +
                     premiumListingModelCollection.size());
 
+            // TODO moved to string constants
             propertyTypeListingModelCollection.add(new PropertyTypeListingModel("STANDARD", standardListingModelCollection));
             propertyTypeListingModelCollection.add(new PropertyTypeListingModel("PREMIUM", premiumListingModelCollection));
         } else {

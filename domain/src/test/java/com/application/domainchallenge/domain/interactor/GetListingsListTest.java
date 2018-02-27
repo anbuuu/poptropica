@@ -14,10 +14,6 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.verifyZeroInteractions;
 
-/**
- * Created by anbu.ezhilan on 23/2/18.
- */
-
 @RunWith(MockitoJUnitRunner.class)
 public class GetListingsListTest {
 

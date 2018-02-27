@@ -32,7 +32,7 @@ import butterknife.Unbinder;
 import io.reactivex.annotations.Nullable;
 
 /**
- * Created by anbu.ezhilan on 25/2/18.
+ * Fragment that shows two horizontal list views of Properties based upon the Property type
  */
 
 public class PropertyListingsFragment extends BaseFragment implements

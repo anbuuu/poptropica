@@ -27,7 +27,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * Created by anbu.ezhilan on 25/2/18.
+ * Adapter that manages a collection of {@link PropertyTypeListingModel}
  */
 
 public class PropertyTypeListAdapter extends RecyclerView.Adapter<PropertyTypeListAdapter.PropertyTypeListItemRowHolder> {

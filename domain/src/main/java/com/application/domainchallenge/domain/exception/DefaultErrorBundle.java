@@ -2,9 +2,9 @@ package com.application.domainchallenge.domain.exception;
 
 /**
  *
- * Wapper
+ * Wrapper around exceptions used to manage Default Errors
  *
- * */
+ */
 
 public class DefaultErrorBundle implements ErrorBundle {
     private static final String DEFAULT_ERROR_MSG = "Unknown_Error";
@@ -14,6 +14,7 @@ public class DefaultErrorBundle implements ErrorBundle {
     public DefaultErrorBundle(Exception exception) {
         this.exception = exception;
     }
+
     @Override
     public Exception getException() {
         return exception;

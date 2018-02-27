@@ -20,7 +20,8 @@ import java.util.List;
 import javax.inject.Inject;
 
 /**
- * Created by anbu.ezhilan on 18/2/18.
+ * {@link ListingsListPresenter} that controls the communication between views and models in
+ * presentation layer
  */
 
 @PerActivity
@@ -64,6 +65,7 @@ public class ListingsListPresenter implements Presenter {
         this.getListingList();
     }
 
+    //TODO
     private void onListingClicked(ListingModel listingModel ) {
         Log.d(TAG, "onListingClicked" + listingModel.getTruncatedDescription());
        // this.viewListView.viewListing(listingModel);
@@ -85,17 +87,12 @@ public class ListingsListPresenter implements Presenter {
         this.viewListView.hideLoading();
     }
 
+    // TODO Verify this
     private void showErrorMessage(ErrorBundle errorBundle) {
         String errorMessage = ErrorMessageFactory.create(this.viewListView.context(),
                 errorBundle.getException());
         this.viewListView.showError(errorMessage);
     }
-
-   /* private void showListingsCollectionView(Collection<ListingEntity> listingsCollection) {
-        final Collection<PropertyTypeListingModel> listingsModelCollection =
-                this.listingModelDataMapper.transform(listingsCollection);
-        this.viewListView.renderListingsList(listingsModelCollection);
-    }*/
 
     private void showListingsCollectionView(Collection<Listing> listingsCollection) {
         final Collection<PropertyTypeListingModel> listingsModelCollection =

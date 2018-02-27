@@ -12,19 +12,12 @@ import com.application.domainchallenge.AndroidApplication;
 import com.application.domainchallenge.R;
 import com.application.domainchallenge.internal.di.components.ApplicationComponent;
 import com.application.domainchallenge.internal.di.modules.ActivityModule;
-import com.application.domainchallenge.navigation.Navigator;
-
-import javax.inject.Inject;
 
 /**
  * Base {@link android.app.Activity} lass for every Activity
  * in this application
  */
-// TODO Moved from Activity to AppCompatActivity
 public abstract class BaseActivity extends AppCompatActivity {
-
-    @Inject
-    Navigator navigator;
 
     private static final String TAG = BaseActivity.class.getSimpleName();
     @Override

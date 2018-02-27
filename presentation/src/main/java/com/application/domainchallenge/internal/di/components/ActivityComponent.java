@@ -8,13 +8,11 @@ import com.application.domainchallenge.internal.di.modules.ActivityModule;
 import dagger.Component;
 
 /**
- * Base Component upon which
+ * Base Component upon which which fragment's components may depend
  */
 
 @PerActivity
 @Component(dependencies = ApplicationComponent.class, modules = ActivityModule.class)
  interface ActivityComponent {
-
-    // Exposed to Sub graphs
     Activity activity();
 }

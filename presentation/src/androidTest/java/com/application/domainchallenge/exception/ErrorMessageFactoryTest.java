@@ -12,10 +12,6 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-/**
- * Created by anbu.ezhilan on 26/2/18.
- */
-
 public class ErrorMessageFactoryTest extends AndroidTestCase {
 
     @Override

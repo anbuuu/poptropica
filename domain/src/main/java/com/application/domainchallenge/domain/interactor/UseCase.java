@@ -2,6 +2,7 @@ package com.application.domainchallenge.domain.interactor;
 
 import com.application.domainchallenge.domain.executor.PostExecutionThread;
 import com.application.domainchallenge.domain.executor.ThreadExecutor;
+import com.fernandocejas.arrow.checks.Preconditions;
 
 import io.reactivex.Observable;
 import io.reactivex.disposables.CompositeDisposable;
@@ -10,9 +11,8 @@ import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
 
 /**
- * Abstract class for a Use Case (Interactor in terms of Clean Architecture).
- * This interface represents a execution unit for different use cases (this means any use case
- * in the application should implement this contract).
+ * Abstract class for a Use Case This interface represents a execution unit for different use cases
+ * Any use case the application should implement this contract
  *
  * By convention each UseCase implementation will return the result using a {@link DisposableObserver}
  * that will execute its job in a background thread and will post the result in the UI thread.
@@ -46,9 +46,7 @@ public abstract class UseCase<T, Params> {
      */
     public void execute(DisposableObserver<T> observer, Params params) {
 
-       // Preconditions.checkNotNull(observer);
-
-        //TODO -- fix this Preconditions.checkNotNull(observer);
+        Preconditions.checkNotNull(observer);
         final Observable<T> observable = this.buildUseCasObservable(params)
                 .subscribeOn(Schedulers.from(threadExecutor))
                 .observeOn(postExecutionThread.getScheduler());
@@ -71,8 +69,7 @@ public abstract class UseCase<T, Params> {
      * @param disposable
      */
     public void addDisposable(Disposable disposable) {
-        //TODO -- Preconditions.CheckNotNull(disposable);
-        //Preconditions.CheckNotNull(disposables);
+        Preconditions.checkNotNull(disposables);
         disposables.add(disposable);
     }
 

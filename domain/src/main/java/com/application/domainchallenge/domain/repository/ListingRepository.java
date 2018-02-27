@@ -7,19 +7,12 @@ import java.util.List;
 import io.reactivex.Observable;
 
 /**
- * Interface that represents a Repository for getting {@link Listing}
- * related data
+ * Interface that represents a Repository for getting {@link Listing} related data
  */
 
 public interface ListingRepository {
     /**
-     * Get an {@link io.reactivex.Observable} which will emit a
-     * list of {@link Listing}
+     * Get an {@link io.reactivex.Observable} which will emit a list of {@link Listing}
      */
     Observable<List<Listing>> listings();
-
-
-    /**
-     * Ad ID to retrieve the Data .. TODO
-     */
 }

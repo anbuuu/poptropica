@@ -8,10 +8,6 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 import static org.mockito.Mockito.verify;
 
-/**
- * Created by anbu.ezhilan on 23/2/18.
- */
-
 @RunWith(MockitoJUnitRunner.class)
 public class DefaultErrorBundleTest {
 

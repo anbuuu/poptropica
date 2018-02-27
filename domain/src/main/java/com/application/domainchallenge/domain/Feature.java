@@ -3,6 +3,9 @@ package com.application.domainchallenge.domain;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Class that represents the Feature Model in the Domain Layer
+ */
 public class Feature {
 
     private String name;

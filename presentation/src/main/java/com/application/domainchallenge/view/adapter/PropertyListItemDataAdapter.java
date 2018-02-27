@@ -22,7 +22,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * Created by anbu.ezhilan on 25/2/18.
+ * Adapter that manages a collection of {@link ListingModel} corresponding to the property type
  */
 
 public class PropertyListItemDataAdapter extends RecyclerView.Adapter  {

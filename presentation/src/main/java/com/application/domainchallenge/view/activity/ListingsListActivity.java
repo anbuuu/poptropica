@@ -16,6 +16,9 @@ import com.application.domainchallenge.view.fragment.PropertyListingsFragment;
 
 import butterknife.ButterKnife;
 
+/**
+ * Activity that shows the list of Properties
+ */
 
 
 public class ListingsListActivity extends BaseActivity

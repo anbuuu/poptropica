@@ -5,14 +5,14 @@ import com.application.domainchallenge.model.PropertyTypeListingModel;
 import java.util.Collection;
 
 /**
- * Created by anbu.ezhilan on 17/2/18.
+ * Interface representing a View in a MVP Pattern, the view is representing a list of
+ * {@link PropertyTypeListingModel}
  */
 
 public interface ListingsListView extends LoadDataView{
     /**
      * Render a Listings List in the UI
      */
-    //void renderListingsList(Collection<ListingModel> listingModelCollection);
     void renderListingsList(Collection<PropertyTypeListingModel> listingModelCollection);
 
 

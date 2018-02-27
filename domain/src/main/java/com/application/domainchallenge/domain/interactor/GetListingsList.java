@@ -18,7 +18,6 @@ import io.reactivex.Observable;
 
 public class GetListingsList extends UseCase<List<Listing>, Void> {
 
-
     private final ListingRepository listingRepository;
 
     @Inject

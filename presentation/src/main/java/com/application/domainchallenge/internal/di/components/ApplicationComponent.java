@@ -13,7 +13,7 @@ import javax.inject.Singleton;
 import dagger.Component;
 
 /**
- * Created by anbu.ezhilan on 16/2/18.
+ * A Component whose life time is the life of the application
  */
 
 @Singleton
