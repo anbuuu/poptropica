@@ -3,7 +3,7 @@ package com.application.domainchallenge.exception;
 import android.test.AndroidTestCase;
 
 import com.application.domainchallenge.R;
-import com.application.domainchallenge.data.exception.ListingNotFoundException;
+import com.application.domainchallenge.data.exception.PropertyListingNotFoundException;
 import com.application.domainchallenge.data.exception.NetworkConnectionException;
 
 import org.junit.Test;
@@ -30,7 +30,7 @@ public class ErrorMessageFactoryTest extends AndroidTestCase {
     @Test
    public void testListingsNotFoundException() {
         String expectedMessage = getContext().getString(R.string.exception_message_listing_not_found);
-        String actualMessage = ErrorMessageFactory.create(getContext(), new ListingNotFoundException());
+        String actualMessage = ErrorMessageFactory.create(getContext(), new PropertyListingNotFoundException());
 
         assertThat(actualMessage, is(equalTo(expectedMessage)));
    }

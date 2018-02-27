@@ -10,7 +10,7 @@ import java.util.Map;
  * Class that represents a user in the presentation Layer
  */
 
-public class ListingModel {
+public class PropertyListingModel {
 
     private Integer adId;
     private String agencyColour;

@@ -14,18 +14,18 @@ public class PropertyTypeListingModel<T> {
         this.category = category;
     }
 
-    public Collection<ListingModel> getItems() {
+    public Collection<PropertyListingModel> getItems() {
         return items;
     }
 
-    public void setItems(Collection<ListingModel> items) {
+    public void setItems(Collection<PropertyListingModel> items) {
         this.items = items;
     }
 
     private String category;
-    private Collection<ListingModel> items;
+    private Collection<PropertyListingModel> items;
 
-    public PropertyTypeListingModel(String category, Collection<ListingModel> items) {
+    public PropertyTypeListingModel(String category, Collection<PropertyListingModel> items) {
         this.category = category;
         this.items = items;
 

@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.application.domainchallenge.R;
-import com.application.domainchallenge.model.ListingModel;
+import com.application.domainchallenge.model.PropertyListingModel;
 import com.application.domainchallenge.model.PropertyTypeListingModel;
 
 import java.util.ArrayList;
@@ -57,7 +57,7 @@ public class PropertyTypeListAdapter extends RecyclerView.Adapter<PropertyTypeLi
         final String sectionName = this.listingsCollection.get(position).getCategory();
 
         Log.d(TAG, "The Section Name is " + sectionName);
-        List<ListingModel> singleSectionItems = (List<ListingModel>) this.listingsCollection.get(position).getItems();
+        List<PropertyListingModel> singleSectionItems = (List<PropertyListingModel>) this.listingsCollection.get(position).getItems();
         holder.itemTitle.setText(sectionName);
 
         PropertyListItemDataAdapter propertyListItemDataAdapter = new

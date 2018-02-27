@@ -3,7 +3,7 @@ package com.application.domainchallenge.domain.interactor;
 import com.application.domainchallenge.domain.Listing;
 import com.application.domainchallenge.domain.executor.PostExecutionThread;
 import com.application.domainchallenge.domain.executor.ThreadExecutor;
-import com.application.domainchallenge.domain.repository.ListingRepository;
+import com.application.domainchallenge.domain.repository.PropertyListingRepository;
 
 import java.util.List;
 
@@ -16,19 +16,19 @@ import io.reactivex.Observable;
  * retrieving a collection of all {@link Listing}
  */
 
-public class GetListingsList extends UseCase<List<Listing>, Void> {
+public class GetPropertyListingsList extends UseCase<List<Listing>, Void> {
 
-    private final ListingRepository listingRepository;
+    private final PropertyListingRepository propertyListingRepository;
 
     @Inject
-    GetListingsList(ListingRepository listingRepository,
-                    ThreadExecutor threadExecutor, PostExecutionThread postExecutionThread) {
+    GetPropertyListingsList(PropertyListingRepository propertyListingRepository,
+                            ThreadExecutor threadExecutor, PostExecutionThread postExecutionThread) {
         super(threadExecutor, postExecutionThread);
-        this.listingRepository = listingRepository;
+        this.propertyListingRepository = propertyListingRepository;
     }
 
     @Override
     Observable<List<Listing>> buildUseCasObservable(Void unused) {
-        return this.listingRepository.listings();
+        return this.propertyListingRepository.listings();
     }
 }

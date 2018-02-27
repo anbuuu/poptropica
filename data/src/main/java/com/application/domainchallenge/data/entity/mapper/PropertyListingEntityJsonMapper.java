@@ -13,14 +13,14 @@ import javax.inject.Inject;
  * Class used to transform from Strings representing Json to Valid Objects
  */
 
-public class ListingEntityJsonMapper {
+public class PropertyListingEntityJsonMapper {
 
 
     private final Gson gson;
-    private final static String TAG = ListingEntityJsonMapper.class.getSimpleName();
+    private final static String TAG = PropertyListingEntityJsonMapper.class.getSimpleName();
 
     @Inject
-    public ListingEntityJsonMapper() {
+    public PropertyListingEntityJsonMapper() {
         this.gson = new Gson();
     }
     /**

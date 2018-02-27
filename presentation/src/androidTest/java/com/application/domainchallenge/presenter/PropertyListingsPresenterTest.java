@@ -2,8 +2,8 @@ package com.application.domainchallenge.presenter;
 
 import android.content.Context;
 
-import com.application.domainchallenge.domain.interactor.GetListingsList;
-import com.application.domainchallenge.mapper.ListingModelDataMapper;
+import com.application.domainchallenge.domain.interactor.GetPropertyListingsList;
+import com.application.domainchallenge.mapper.PropertyListingModelDataMapper;
 import com.application.domainchallenge.view.ListingsListView;
 
 import org.junit.Before;
@@ -18,18 +18,18 @@ import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.verify;
 
 @RunWith(org.mockito.junit.MockitoJUnitRunner.class)
-public class ListingsListPresenterTest {
+public class PropertyListingsPresenterTest {
 
-    private ListingsListPresenter userListPresenter;
+    private PropertyListingsPresenter userListPresenter;
 
     @Mock private Context mockContext;
     @Mock private ListingsListView mockUserListView;
-    @Mock private GetListingsList mockGetUserList;
-    @Mock private ListingModelDataMapper mockUserModelDataMapper;
+    @Mock private GetPropertyListingsList mockGetUserList;
+    @Mock private PropertyListingModelDataMapper mockUserModelDataMapper;
 
     @Before
     public void setUp() {
-        userListPresenter = new ListingsListPresenter(mockGetUserList, mockUserModelDataMapper);
+        userListPresenter = new PropertyListingsPresenter(mockGetUserList, mockUserModelDataMapper);
         userListPresenter.setView(mockUserListView);
     }
 

@@ -14,9 +14,9 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 
 import com.application.domainchallenge.R;
-import com.application.domainchallenge.internal.di.components.ListingComponent;
+import com.application.domainchallenge.internal.di.components.PropertyListingComponent;
 import com.application.domainchallenge.model.PropertyTypeListingModel;
-import com.application.domainchallenge.presenter.ListingsListPresenter;
+import com.application.domainchallenge.presenter.PropertyListingsPresenter;
 import com.application.domainchallenge.view.ListingsListView;
 import com.application.domainchallenge.view.adapter.PropertyListItemDataAdapter;
 import com.application.domainchallenge.view.adapter.PropertyTypeListAdapter;
@@ -41,7 +41,7 @@ public class PropertyListingsFragment extends BaseFragment implements
     private static final String TAG = PropertyListingsFragment.class.getSimpleName();
 
     @Inject
-    ListingsListPresenter listingsListPresenter;
+    PropertyListingsPresenter propertyListingsPresenter;
 
     @Inject
     PropertyTypeListAdapter categoryListDataAdapter;
@@ -77,7 +77,7 @@ public class PropertyListingsFragment extends BaseFragment implements
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.getComponent(ListingComponent.class).inject(this);
+        this.getComponent(PropertyListingComponent.class).inject(this);
 
     }
 
@@ -101,7 +101,7 @@ public class PropertyListingsFragment extends BaseFragment implements
         recyclerView.setAdapter(categoryListDataAdapter);
         mLayoutManager = new LinearLayoutManager(context(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(mLayoutManager);
-        this.listingsListPresenter.setView(this);
+        this.propertyListingsPresenter.setView(this);
         //this.categoryItemListDataAdapter.setOnPropertyItemClickListener(onPropertyItemClickListener);
         recyclerView.setSaveEnabled(true);
         if (savedInstanceState == null) {
@@ -110,13 +110,13 @@ public class PropertyListingsFragment extends BaseFragment implements
     }
 
     public void loadPropertyList() {
-        this.listingsListPresenter.initialize();
+        this.propertyListingsPresenter.initialize();
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        this.listingsListPresenter.resume();
+        this.propertyListingsPresenter.resume();
         if ( list_state != null ) {
             mLayoutManager.onRestoreInstanceState(list_state);
         }
@@ -125,7 +125,7 @@ public class PropertyListingsFragment extends BaseFragment implements
     @Override
     public void onPause() {
         super.onPause();
-        this.listingsListPresenter.pause();
+        this.propertyListingsPresenter.pause();
         list_state = recyclerView.getLayoutManager().onSaveInstanceState();
     }
 
@@ -140,7 +140,7 @@ public class PropertyListingsFragment extends BaseFragment implements
     @Override
     public void onDestroy() {
         super.onDestroy();
-        this.listingsListPresenter.destroy();
+        this.propertyListingsPresenter.destroy();
     }
 
     @Override

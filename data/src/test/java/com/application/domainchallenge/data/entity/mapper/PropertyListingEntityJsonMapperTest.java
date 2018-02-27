@@ -16,7 +16,7 @@ import static org.hamcrest.CoreMatchers.equalTo;
 
 
 @RunWith(MockitoJUnitRunner.class)
-public class ListingEntityJsonMapperTest {
+public class PropertyListingEntityJsonMapperTest {
 
     private static final String JSON_RESPONSE_PROPERTY_LISTINGS = "{\n" +
             "\t\"Ads\": null,\n" +
@@ -134,20 +134,20 @@ public class ListingEntityJsonMapperTest {
             "}\n";
 
 
-    private ListingEntityJsonMapper listingEntityJsonMapper;
+    private PropertyListingEntityJsonMapper propertyListingEntityJsonMapper;
 
     @Rule
     public ExpectedException expectedException = ExpectedException.none();
 
     @Before
     public void setUp() {
-        listingEntityJsonMapper = new ListingEntityJsonMapper();
+        propertyListingEntityJsonMapper = new PropertyListingEntityJsonMapper();
     }
 
     @Test
     public void testTransformListingEntityHappyCase() {
         PropertyResults listingEntity =
-                listingEntityJsonMapper.transformListingEntityCollection(JSON_RESPONSE_PROPERTY_LISTINGS);
+                propertyListingEntityJsonMapper.transformListingEntityCollection(JSON_RESPONSE_PROPERTY_LISTINGS);
 
         assertThat(listingEntity.getListingResults().getListingEntities().get(0).getAdId(),
                 is(equalTo(2014194436)));
@@ -156,6 +156,6 @@ public class ListingEntityJsonMapperTest {
     @Test
     public void testTransformListingEntityNotValidResponse() {
         expectedException.expect(JsonSyntaxException.class);
-        listingEntityJsonMapper.transformListingEntityCollection("Dummylistings");
+        propertyListingEntityJsonMapper.transformListingEntityCollection("Dummylistings");
     }
 }

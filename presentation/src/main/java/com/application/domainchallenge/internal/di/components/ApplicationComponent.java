@@ -4,7 +4,7 @@ import android.content.Context;
 
 import com.application.domainchallenge.domain.executor.PostExecutionThread;
 import com.application.domainchallenge.domain.executor.ThreadExecutor;
-import com.application.domainchallenge.domain.repository.ListingRepository;
+import com.application.domainchallenge.domain.repository.PropertyListingRepository;
 import com.application.domainchallenge.internal.di.modules.ApplicationModule;
 import com.application.domainchallenge.view.activity.BaseActivity;
 
@@ -26,5 +26,5 @@ public interface ApplicationComponent {
     Context context();
     ThreadExecutor threadExecutor();
     PostExecutionThread postExecutionThread();
-    ListingRepository listingRepository();
+    PropertyListingRepository listingRepository();
 }

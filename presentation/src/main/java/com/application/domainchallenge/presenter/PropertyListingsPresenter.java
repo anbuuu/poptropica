@@ -6,11 +6,11 @@ import android.util.Log;
 import com.application.domainchallenge.domain.Listing;
 import com.application.domainchallenge.domain.exception.ErrorBundle;
 import com.application.domainchallenge.domain.interactor.DefaultObserver;
-import com.application.domainchallenge.domain.interactor.GetListingsList;
+import com.application.domainchallenge.domain.interactor.GetPropertyListingsList;
 import com.application.domainchallenge.exception.ErrorMessageFactory;
 import com.application.domainchallenge.internal.di.PerActivity;
-import com.application.domainchallenge.mapper.ListingModelDataMapper;
-import com.application.domainchallenge.model.ListingModel;
+import com.application.domainchallenge.mapper.PropertyListingModelDataMapper;
+import com.application.domainchallenge.model.PropertyListingModel;
 import com.application.domainchallenge.model.PropertyTypeListingModel;
 import com.application.domainchallenge.view.ListingsListView;
 
@@ -20,23 +20,23 @@ import java.util.List;
 import javax.inject.Inject;
 
 /**
- * {@link ListingsListPresenter} that controls the communication between views and models in
+ * {@link PropertyListingsPresenter} that controls the communication between views and models in
  * presentation layer
  */
 
 @PerActivity
-public class ListingsListPresenter implements Presenter {
+public class PropertyListingsPresenter implements Presenter {
 
     private ListingsListView viewListView;
 
-    private final GetListingsList getListingsListUseCase;
-    private final ListingModelDataMapper listingModelDataMapper;
-    private static final String TAG = ListingsListPresenter.class.getSimpleName();
+    private final GetPropertyListingsList getPropertyListingsListUseCase;
+    private final PropertyListingModelDataMapper propertyListingModelDataMapper;
+    private static final String TAG = PropertyListingsPresenter.class.getSimpleName();
 
     @Inject
-    public ListingsListPresenter(GetListingsList getListingsListUseCase, ListingModelDataMapper listingModelDataMapper) {
-        this.getListingsListUseCase = getListingsListUseCase;
-        this.listingModelDataMapper = listingModelDataMapper;
+    public PropertyListingsPresenter(GetPropertyListingsList getPropertyListingsListUseCase, PropertyListingModelDataMapper propertyListingModelDataMapper) {
+        this.getPropertyListingsListUseCase = getPropertyListingsListUseCase;
+        this.propertyListingModelDataMapper = propertyListingModelDataMapper;
     }
 
     public void setView(@NonNull ListingsListView view) { this.viewListView = view; }
@@ -49,7 +49,7 @@ public class ListingsListPresenter implements Presenter {
 
     @Override
     public void destroy() {
-        this.getListingsListUseCase.dispose();
+        this.getPropertyListingsListUseCase.dispose();
         this.viewListView = null;
     }
     /**
@@ -66,9 +66,9 @@ public class ListingsListPresenter implements Presenter {
     }
 
     //TODO
-    private void onListingClicked(ListingModel listingModel ) {
-        Log.d(TAG, "onListingClicked" + listingModel.getTruncatedDescription());
-       // this.viewListView.viewListing(listingModel);
+    private void onListingClicked(PropertyListingModel propertyListingModel) {
+        Log.d(TAG, "onListingClicked" + propertyListingModel.getTruncatedDescription());
+       // this.viewListView.viewListing(propertyListingModel);
     }
     private void hideViewRetry() {
         this.viewListView.hideRetry();
@@ -96,13 +96,13 @@ public class ListingsListPresenter implements Presenter {
 
     private void showListingsCollectionView(Collection<Listing> listingsCollection) {
         final Collection<PropertyTypeListingModel> listingsModelCollection =
-                this.listingModelDataMapper.transform(listingsCollection);
+                this.propertyListingModelDataMapper.transform(listingsCollection);
         this.viewListView.renderListingsList(listingsModelCollection);
 
     }
 
     private void getListingList() {
-        this.getListingsListUseCase.execute(new ListingListObserver(), null);
+        this.getPropertyListingsListUseCase.execute(new ListingListObserver(), null);
     }
 
     private final class ListingListObserver extends DefaultObserver<List<Listing>> {
@@ -110,21 +110,21 @@ public class ListingsListPresenter implements Presenter {
         @Override
         public void onNext(List<Listing> listings) {
             Log.d(TAG, "Retrieving listings with count = " + listings.size());
-            ListingsListPresenter.this.showListingsCollectionView(listings);
+            PropertyListingsPresenter.this.showListingsCollectionView(listings);
         }
 
         @Override
         public void onComplete() {
-            ListingsListPresenter.this.hideViewLoading();
+            PropertyListingsPresenter.this.hideViewLoading();
         }
 
         @Override
         public void onError(Throwable exception) {
-            ListingsListPresenter.this.hideViewLoading();
-           // TODO fix this ListingsListPresenter.this.showErrorMessage(new DefaultErrorBundle( (Exception) ex));
+            PropertyListingsPresenter.this.hideViewLoading();
+           // TODO fix this PropertyListingsPresenter.this.showErrorMessage(new DefaultErrorBundle( (Exception) ex));
             Log.d(TAG, "The Exception message thrown is " + exception.getMessage());
-            ListingsListPresenter.this.showErrorMessage("Issue in Loading");
-            ListingsListPresenter.this.showViewRetry();
+            PropertyListingsPresenter.this.showErrorMessage("Issue in Loading");
+            PropertyListingsPresenter.this.showViewRetry();
 
         }
     }

@@ -15,21 +15,21 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 
 @RunWith(MockitoJUnitRunner.class)
-public class ListingEntityEntityDataMapperTest {
+public class PropertyListingEntityDataMapperTest {
 
     private static final int FAKE_AdId =  2014181602;
 
-    private ListingEntityDataMapper listingEntityDataMapper;
+    private PropertyListingEntityDataMapper propertyListingEntityDataMapper;
 
     @Before
     public void setUp() throws Exception {
-        listingEntityDataMapper = new ListingEntityDataMapper();
+        propertyListingEntityDataMapper = new PropertyListingEntityDataMapper();
     }
 
     @Test
     public void testTransformListingEntity() {
         ListingEntity listingEntity = createFakeListingEntity();
-        Listing listing = listingEntityDataMapper.transform(listingEntity);
+        Listing listing = propertyListingEntityDataMapper.transform(listingEntity);
 
         assertThat(listing, is(instanceOf(com.application.domainchallenge.domain.Listing.class)));
         assertThat(listing.getAdId(), is(FAKE_AdId));

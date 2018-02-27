@@ -6,16 +6,16 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 /**
- * JSON Serializer / De Serializer.
+ * JSON DataSerializer / De DataSerializer.
  */
 
 @Singleton
-public class Serializer {
+public class DataSerializer {
 
     private final Gson gson = new Gson();
 
     @Inject
-    Serializer() {}
+    DataSerializer() {}
 
     /**
      * Serialize an Object to JSON

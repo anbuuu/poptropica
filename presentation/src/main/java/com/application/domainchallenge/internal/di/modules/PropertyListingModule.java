@@ -7,6 +7,6 @@ import dagger.Module;
  */
 
 @Module
-public class ListingModule {
-    public ListingModule() {}
+public class PropertyListingModule {
+    public PropertyListingModule() {}
 }

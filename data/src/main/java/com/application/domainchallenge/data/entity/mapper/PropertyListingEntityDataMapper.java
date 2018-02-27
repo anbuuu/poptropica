@@ -18,12 +18,12 @@ import javax.inject.Singleton;
  */
 
 @Singleton
-public class ListingEntityDataMapper {
+public class PropertyListingEntityDataMapper {
 
-    private static final String TAG = ListingEntityDataMapper.class.getSimpleName();
+    private static final String TAG = PropertyListingEntityDataMapper.class.getSimpleName();
 
     @Inject
-    ListingEntityDataMapper() {
+    PropertyListingEntityDataMapper() {
     }
 
     /**

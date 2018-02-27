@@ -1,6 +1,6 @@
 package com.application.domainchallenge.data.repository.datasource;
 
-import com.application.domainchallenge.data.net.RestApi;
+import com.application.domainchallenge.data.net.CloudApi;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -11,22 +11,22 @@ import org.mockito.junit.MockitoJUnitRunner;
 import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class)
-public class CloudListingEntityDataStoreTest {
+public class CloudPropertyListingEntityDataStoreTest {
 
-    private CloudListingDataStore cloudListingDataStore;
+    private CloudPropertyListingDataStore cloudListingDataStore;
 
     @Mock
-    private RestApi mockRestApi;
+    private CloudApi mockCloudApi;
 
     @Before
     public void setUp() {
-        cloudListingDataStore = new CloudListingDataStore(mockRestApi);
+        cloudListingDataStore = new CloudPropertyListingDataStore(mockCloudApi);
     }
 
     @Test
     public void testGetListingEntityListFromApi() {
         cloudListingDataStore.listingEntityList();
-        verify(mockRestApi).listingEntityList();
+        verify(mockCloudApi).listingEntityList();
 
     }
 }

@@ -2,7 +2,7 @@ package com.application.domainchallenge.internal.di.components;
 
 import com.application.domainchallenge.internal.di.PerActivity;
 import com.application.domainchallenge.internal.di.modules.ActivityModule;
-import com.application.domainchallenge.internal.di.modules.ListingModule;
+import com.application.domainchallenge.internal.di.modules.PropertyListingModule;
 import com.application.domainchallenge.view.fragment.PropertyListingsFragment;
 
 import dagger.Component;
@@ -13,8 +13,8 @@ import dagger.Component;
 
 @PerActivity
 @Component(dependencies = ApplicationComponent.class,
-modules = {ActivityModule.class, ListingModule.class})
-public interface ListingComponent extends ActivityComponent{
+modules = {ActivityModule.class, PropertyListingModule.class})
+public interface PropertyListingComponent extends ActivityComponent{
     void inject(PropertyListingsFragment propertyListingsFragment);
 
 }

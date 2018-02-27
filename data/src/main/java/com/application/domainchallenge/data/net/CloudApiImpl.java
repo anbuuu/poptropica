@@ -6,7 +6,7 @@ import android.net.NetworkInfo;
 import android.util.Log;
 
 import com.application.domainchallenge.data.entity.PropertyResults;
-import com.application.domainchallenge.data.entity.mapper.ListingEntityJsonMapper;
+import com.application.domainchallenge.data.entity.mapper.PropertyListingEntityJsonMapper;
 import com.application.domainchallenge.data.exception.NetworkConnectionException;
 
 import java.net.MalformedURLException;
@@ -14,23 +14,23 @@ import java.net.MalformedURLException;
 import io.reactivex.Observable;
 
 /**
- * {@link RestApi} Implementation or retrieving data from Network
+ * {@link CloudApi} Implementation or retrieving data from Network
  */
 
-public class RestApiImpl implements RestApi {
+public class CloudApiImpl implements CloudApi {
 
     private final Context context;
-    private final ListingEntityJsonMapper listingEntityJsonMapper;
-    private static final String TAG = RestApiImpl.class.getSimpleName();
+    private final PropertyListingEntityJsonMapper propertyListingEntityJsonMapper;
+    private static final String TAG = CloudApiImpl.class.getSimpleName();
 
-    public RestApiImpl(Context context, ListingEntityJsonMapper listingEntityJsonMapper) {
+    public CloudApiImpl(Context context, PropertyListingEntityJsonMapper propertyListingEntityJsonMapper) {
 
-        if ( context == null || listingEntityJsonMapper == null) {
+        if ( context == null || propertyListingEntityJsonMapper == null) {
             // TODO Change the Exception Text
             throw new IllegalArgumentException("The Constructor Parameters cannot be null ");
         }
         this.context = context;
-        this.listingEntityJsonMapper = listingEntityJsonMapper;
+        this.propertyListingEntityJsonMapper = propertyListingEntityJsonMapper;
     }
 
 
@@ -43,11 +43,11 @@ public class RestApiImpl implements RestApi {
                     String responseListingEntities = getListingEntitiesFromApi();
                     Log.d(TAG, "the Response retrieved is " + responseListingEntities.toString());
                     if ( responseListingEntities != null) {
-                        emitter.onNext(listingEntityJsonMapper.transformListingEntityCollection(responseListingEntities));
+                        emitter.onNext(propertyListingEntityJsonMapper.transformListingEntityCollection(responseListingEntities));
                         emitter.onComplete();
                     }
                 } catch ( Exception ex ) {
-                    Log.d(TAG, "Exception thrown in RestApiImpl::lisitngEntityList()");
+                    Log.d(TAG, "Exception thrown in CloudApiImpl::lisitngEntityList()");
                     emitter.onError(new NetworkConnectionException(ex.getCause()));
                 }
 

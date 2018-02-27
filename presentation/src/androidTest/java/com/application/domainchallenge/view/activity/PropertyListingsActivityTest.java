@@ -13,20 +13,20 @@ import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 
-public class ListingsListActivityTest extends ActivityInstrumentationTestCase2<ListingsListActivity> {
+public class PropertyListingsActivityTest extends ActivityInstrumentationTestCase2<PropertyListingsActivity> {
 
 
-    public ListingsListActivityTest() {
-        super(ListingsListActivity.class);
+    public PropertyListingsActivityTest() {
+        super(PropertyListingsActivity.class);
     }
 
-    private ListingsListActivity listingsListActivity;
+    private PropertyListingsActivity propertyListingsActivity;
 
     @Override
     protected void setUp() throws Exception {
         super.setUp();
         this.setActivityIntent(createTargetIntent());
-        listingsListActivity = getActivity();
+        propertyListingsActivity = getActivity();
     }
 
     @Override
@@ -36,12 +36,12 @@ public class ListingsListActivityTest extends ActivityInstrumentationTestCase2<L
 
     @Test
     public void testContainsPropertyListingsFragment() {
-        Fragment propertyListFragment = listingsListActivity.getSupportFragmentManager().findFragmentById(R.id.fragmentContainer);
+        Fragment propertyListFragment = propertyListingsActivity.getSupportFragmentManager().findFragmentById(R.id.fragmentContainer);
         assertThat(propertyListFragment, is(notNullValue()));
     }
 
     private Intent createTargetIntent() {
-        Intent listingsLaunchActivity = ListingsListActivity.getCallingIntent(getInstrumentation().getTargetContext());
+        Intent listingsLaunchActivity = PropertyListingsActivity.getCallingIntent(getInstrumentation().getTargetContext());
         return listingsLaunchActivity;
 
     }

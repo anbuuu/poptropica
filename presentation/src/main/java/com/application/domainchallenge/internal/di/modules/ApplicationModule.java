@@ -4,11 +4,11 @@ import android.content.Context;
 
 import com.application.domainchallenge.AndroidApplication;
 import com.application.domainchallenge.UIThread;
-import com.application.domainchallenge.data.executor.JobExecutor;
-import com.application.domainchallenge.data.repository.ListingDataRepository;
+import com.application.domainchallenge.data.executor.ConcurrentJobExecutor;
+import com.application.domainchallenge.data.repository.PropertyPropertyListingDataRepository;
 import com.application.domainchallenge.domain.executor.PostExecutionThread;
 import com.application.domainchallenge.domain.executor.ThreadExecutor;
-import com.application.domainchallenge.domain.repository.ListingRepository;
+import com.application.domainchallenge.domain.repository.PropertyListingRepository;
 
 import javax.inject.Singleton;
 
@@ -36,8 +36,8 @@ public class ApplicationModule {
 
     @Provides
     @Singleton
-    ThreadExecutor provideThreadExecutor(JobExecutor jobExecutor) {
-        return jobExecutor;
+    ThreadExecutor provideThreadExecutor(ConcurrentJobExecutor concurrentJobExecutor) {
+        return concurrentJobExecutor;
     }
 
     @Provides
@@ -48,8 +48,8 @@ public class ApplicationModule {
 
     @Provides
     @Singleton
-    ListingRepository provideListingRepository(ListingDataRepository listingDataRepository) {
-        return listingDataRepository;
+    PropertyListingRepository provideListingRepository(PropertyPropertyListingDataRepository propertyListingDataRepository) {
+        return propertyListingDataRepository;
     }
 
 }

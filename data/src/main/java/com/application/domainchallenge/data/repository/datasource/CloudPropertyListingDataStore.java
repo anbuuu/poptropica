@@ -1,7 +1,7 @@
 package com.application.domainchallenge.data.repository.datasource;
 
 import com.application.domainchallenge.data.entity.PropertyResults;
-import com.application.domainchallenge.data.net.RestApi;
+import com.application.domainchallenge.data.net.CloudApi;
 
 import io.reactivex.Observable;
 
@@ -9,17 +9,17 @@ import io.reactivex.Observable;
  * Listing Data Store Implementation for Cloud
  */
 
-class CloudListingDataStore implements ListingDataStore {
+class CloudPropertyListingDataStore implements PropertyListingDataStore {
 
-    private final RestApi restApi;
+    private final CloudApi cloudApi;
 
-    public CloudListingDataStore(RestApi restApi) {
-        this.restApi = restApi;
+    public CloudPropertyListingDataStore(CloudApi cloudApi) {
+        this.cloudApi = cloudApi;
     }
 
     @Override
     public Observable<PropertyResults> listingEntityList() {
-        return this.restApi.listingEntityList();
+        return this.cloudApi.listingEntityList();
     }
 
 }

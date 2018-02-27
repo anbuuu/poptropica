@@ -10,7 +10,7 @@ import io.reactivex.Observable;
  * Interface that represents a Repository for getting {@link Listing} related data
  */
 
-public interface ListingRepository {
+public interface PropertyListingRepository {
     /**
      * Get an {@link io.reactivex.Observable} which will emit a list of {@link Listing}
      */

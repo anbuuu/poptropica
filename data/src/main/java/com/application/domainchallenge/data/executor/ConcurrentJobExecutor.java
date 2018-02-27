@@ -13,16 +13,16 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 /**
- * JobExecutor for Concurrent Thread Pools
+ * ConcurrentJobExecutor for Concurrent Thread Pools
  */
 
 @Singleton
-public class JobExecutor implements ThreadExecutor {
+public class ConcurrentJobExecutor implements ThreadExecutor {
 
     private final ThreadPoolExecutor threadPoolExecutor;
 
     @Inject
-    JobExecutor() {
+    ConcurrentJobExecutor() {
         this.threadPoolExecutor = new ThreadPoolExecutor(3,5,10, TimeUnit.SECONDS,
                 new LinkedBlockingDeque<>(), new JobThreadFactory());
 

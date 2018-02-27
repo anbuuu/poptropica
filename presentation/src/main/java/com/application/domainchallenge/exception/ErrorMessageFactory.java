@@ -3,7 +3,7 @@ package com.application.domainchallenge.exception;
 import android.content.Context;
 
 import com.application.domainchallenge.R;
-import com.application.domainchallenge.data.exception.ListingNotFoundException;
+import com.application.domainchallenge.data.exception.PropertyListingNotFoundException;
 import com.application.domainchallenge.data.exception.NetworkConnectionException;
 
 /**
@@ -26,7 +26,7 @@ public class ErrorMessageFactory {
 
         if ( exception instanceof NetworkConnectionException) {
             errorMessage = context.getString(R.string.exception_message_no_connection);
-        } else if ( exception instanceof ListingNotFoundException ) {
+        } else if ( exception instanceof PropertyListingNotFoundException) {
             errorMessage = context.getString(R.string.exception_message_listing_not_found);
         }
         return errorMessage;

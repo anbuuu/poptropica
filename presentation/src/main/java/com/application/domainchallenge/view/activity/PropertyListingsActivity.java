@@ -10,8 +10,8 @@ import android.view.Window;
 
 import com.application.domainchallenge.R;
 import com.application.domainchallenge.internal.di.HasComponent;
-import com.application.domainchallenge.internal.di.components.DaggerListingComponent;
-import com.application.domainchallenge.internal.di.components.ListingComponent;
+import com.application.domainchallenge.internal.di.components.DaggerPropertyListingComponent;
+import com.application.domainchallenge.internal.di.components.PropertyListingComponent;
 import com.application.domainchallenge.view.fragment.PropertyListingsFragment;
 
 import butterknife.ButterKnife;
@@ -21,15 +21,15 @@ import butterknife.ButterKnife;
  */
 
 
-public class ListingsListActivity extends BaseActivity
-        implements HasComponent<ListingComponent> {
+public class PropertyListingsActivity extends BaseActivity
+        implements HasComponent<PropertyListingComponent> {
 
     public static Intent getCallingIntent(Context context) {
-        return new Intent(context, ListingsListActivity.class);
+        return new Intent(context, PropertyListingsActivity.class);
     }
 
-    private ListingComponent listingComponent;
-    private static final String TAG = ListingsListActivity.class.getSimpleName();
+    private PropertyListingComponent propertyListingComponent;
+    private static final String TAG = PropertyListingsActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -46,7 +46,7 @@ public class ListingsListActivity extends BaseActivity
     }
 
     private void initializeInjector() {
-        this.listingComponent = DaggerListingComponent.builder()
+        this.propertyListingComponent = DaggerPropertyListingComponent.builder()
                 .applicationComponent(getApplicationComponent())
                 .activityModule(getActivityModule())
                 .build();
@@ -54,8 +54,8 @@ public class ListingsListActivity extends BaseActivity
 
 
     @Override
-    public ListingComponent getComponent() {
-        return listingComponent;
+    public PropertyListingComponent getComponent() {
+        return propertyListingComponent;
     }
 
     private void loadFragment(Fragment fragment) {

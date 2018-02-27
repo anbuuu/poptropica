@@ -11,7 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.application.domainchallenge.R;
-import com.application.domainchallenge.model.ListingModel;
+import com.application.domainchallenge.model.PropertyListingModel;
 import com.bumptech.glide.Glide;
 
 import java.util.List;
@@ -22,12 +22,12 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * Adapter that manages a collection of {@link ListingModel} corresponding to the property type
+ * Adapter that manages a collection of {@link PropertyListingModel} corresponding to the property type
  */
 
 public class PropertyListItemDataAdapter extends RecyclerView.Adapter  {
 
-    private List<ListingModel> categoryItemList;
+    private List<PropertyListingModel> categoryItemList;
     private Context mContext;
     private String categoryName;
     private static final String TAG = PropertyListItemDataAdapter.class.getSimpleName();
@@ -40,7 +40,7 @@ public class PropertyListItemDataAdapter extends RecyclerView.Adapter  {
     private OnPropertyItemClickListener onPropertyItemClickListener;
 
     @Inject
-    public PropertyListItemDataAdapter(Context context, List<ListingModel> singleSectionItems, String sectionName) {
+    public PropertyListItemDataAdapter(Context context, List<PropertyListingModel> singleSectionItems, String sectionName) {
         this.categoryItemList = singleSectionItems;
         this.mContext = context;
         this.categoryName = sectionName;
@@ -76,9 +76,9 @@ public class PropertyListItemDataAdapter extends RecyclerView.Adapter  {
     @Override
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, int position) {
 
-        final ListingModel listingModel = categoryItemList.get(position);
+        final PropertyListingModel propertyListingModel = categoryItemList.get(position);
         Log.d(TAG, "Enteirng onBindViewHolder with desc " +
-                listingModel.getTruncatedDescription());
+                propertyListingModel.getTruncatedDescription());
 
         //Toast.makeText(mContext, "Toast. Test Message ", Toast.LENGTH_SHORT).show();
 
@@ -87,44 +87,44 @@ public class PropertyListItemDataAdapter extends RecyclerView.Adapter  {
             Log.d(TAG, "AAA Standard ListingEntity View Holder instance ");
 
             Glide.with(mContext)
-                    .load(listingModel.getRetinaDisplayThumbUrl())
+                    .load(propertyListingModel.getRetinaDisplayThumbUrl())
                     .fitCenter()
                     .into(((StandardListingViewHolder) holder).iv_listing_image_normal);
 
-            ((StandardListingViewHolder) holder).tv_listing_price.setText(listingModel.getDisplayPrice());
+            ((StandardListingViewHolder) holder).tv_listing_price.setText(propertyListingModel.getDisplayPrice());
             // combine bedrooms, bathrooms and Car space together
-            String concHouseRooms = listingModel.getBedrooms() + " bed " + listingModel.getBathrooms()
-                    + " bath " + listingModel.getCarspaces() + " car ";
-            Log.d(TAG, "The values are " + concHouseRooms + " "  + listingModel.getDisplayPrice()
-                    +  " " + listingModel.getDisplayableAddress());
+            String concHouseRooms = propertyListingModel.getBedrooms() + " bed " + propertyListingModel.getBathrooms()
+                    + " bath " + propertyListingModel.getCarspaces() + " car ";
+            Log.d(TAG, "The values are " + concHouseRooms + " "  + propertyListingModel.getDisplayPrice()
+                    +  " " + propertyListingModel.getDisplayableAddress());
             ((StandardListingViewHolder) holder).tv_total_rooms.setText(concHouseRooms);
-            ((StandardListingViewHolder) holder).tv_listing_address.setText(listingModel.getDisplayableAddress());
+            ((StandardListingViewHolder) holder).tv_listing_address.setText(propertyListingModel.getDisplayableAddress());
             Glide.with(mContext)
-                    .load(listingModel.getAgencyLogoUrl())
+                    .load(propertyListingModel.getAgencyLogoUrl())
                     .centerCrop()
                     .into(((StandardListingViewHolder) holder).iv_agency_logo);
         } else if ( holder instanceof PremiumListingViewHolder ) {
             Log.d(TAG, "AAA premium ListingEntity View Holder instance ");
             Glide.with(mContext)
-                    .load(listingModel.getRetinaDisplayThumbUrl())
+                    .load(propertyListingModel.getRetinaDisplayThumbUrl())
                     .fitCenter()
                     .into(((PremiumListingViewHolder) holder).iv_listing_image_normal);
 
-            ((PremiumListingViewHolder) holder).tv_listing_price.setText(listingModel.getDisplayPrice());
+            ((PremiumListingViewHolder) holder).tv_listing_price.setText(propertyListingModel.getDisplayPrice());
             // combine bedrooms, bathrooms and Car space together
-            String concHouseRooms = listingModel.getBedrooms() + " bed " + listingModel.getBathrooms()
-                    + " bath " + listingModel.getCarspaces() + " car ";
-            Log.d(TAG, "The values are " + concHouseRooms + " "  + listingModel.getDisplayPrice()
-                    +  " " + listingModel.getDisplayableAddress());
+            String concHouseRooms = propertyListingModel.getBedrooms() + " bed " + propertyListingModel.getBathrooms()
+                    + " bath " + propertyListingModel.getCarspaces() + " car ";
+            Log.d(TAG, "The values are " + concHouseRooms + " "  + propertyListingModel.getDisplayPrice()
+                    +  " " + propertyListingModel.getDisplayableAddress());
             ((PremiumListingViewHolder) holder).tv_total_rooms.setText(concHouseRooms);
-            ((PremiumListingViewHolder) holder).tv_listing_address.setText(listingModel.getDisplayableAddress());
+            ((PremiumListingViewHolder) holder).tv_listing_address.setText(propertyListingModel.getDisplayableAddress());
             Glide.with(mContext)
-                    .load(listingModel.getAgencyLogoUrl())
+                    .load(propertyListingModel.getAgencyLogoUrl())
                     .centerCrop()
                     .into(((PremiumListingViewHolder) holder).iv_agency_logo);
 
             Glide.with(mContext)
-                    .load(listingModel.getSecondRetinaDisplayThumbUrl() )
+                    .load(propertyListingModel.getSecondRetinaDisplayThumbUrl() )
                     .fitCenter()
                     .into(((PremiumListingViewHolder) holder).iv_listing_image_elite);
         }
@@ -132,11 +132,11 @@ public class PropertyListItemDataAdapter extends RecyclerView.Adapter  {
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(TAG, "Entering onClick with Data " + listingModel.getAdId() );
+                Log.d(TAG, "Entering onClick with Data " + propertyListingModel.getAdId() );
                 if ( PropertyListItemDataAdapter.this.onPropertyItemClickListener != null ) {
-                    Toast.makeText(holder.itemView.getContext(), "Item Clicked is " + listingModel.getAdId(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(holder.itemView.getContext(), "Item Clicked is " + propertyListingModel.getAdId(), Toast.LENGTH_SHORT).show();
                     PropertyListItemDataAdapter.this.onPropertyItemClickListener.
-                            onPropertyItemClicked(listingModel.getAdId());
+                            onPropertyItemClicked(propertyListingModel.getAdId());
                 }
             }
         });

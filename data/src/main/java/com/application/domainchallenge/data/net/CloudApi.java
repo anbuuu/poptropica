@@ -6,10 +6,10 @@ import io.reactivex.Observable;
 
 
 /**
- * RestApi for Retrieving Data from Network
+ * CloudApi for Retrieving Data from Network
  */
 
-public interface RestApi {
+public interface CloudApi {
 
     String API_DOMAIN_URL = "https://rest.domain.com.au/searchservice.svc/mapsearch?mode=buy&sub=Bondi&pcodes=2026&state=NSW";
     /**
