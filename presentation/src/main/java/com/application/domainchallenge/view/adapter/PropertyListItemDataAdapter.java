@@ -27,9 +27,9 @@ import butterknife.ButterKnife;
 
 public class PropertyListItemDataAdapter extends RecyclerView.Adapter  {
 
-    private List<PropertyListingModel> categoryItemList;
+    private List<PropertyListingModel> propertyListingModels;
     private Context mContext;
-    private String categoryName;
+    private String propertyType;
     private static final String TAG = PropertyListItemDataAdapter.class.getSimpleName();
 
 
@@ -41,9 +41,9 @@ public class PropertyListItemDataAdapter extends RecyclerView.Adapter  {
 
     @Inject
     public PropertyListItemDataAdapter(Context context, List<PropertyListingModel> singleSectionItems, String sectionName) {
-        this.categoryItemList = singleSectionItems;
+        this.propertyListingModels = singleSectionItems;
         this.mContext = context;
-        this.categoryName = sectionName;
+        this.propertyType = sectionName;
 
     }
 
@@ -62,10 +62,10 @@ public class PropertyListItemDataAdapter extends RecyclerView.Adapter  {
 
 
         final View view;
-        if ( categoryName.equalsIgnoreCase("STANDARD")) {
+        if ( propertyType.equalsIgnoreCase("STANDARD")) {
             view = inflater.inflate(R.layout.row_listing_normal, null );
             viewHolder = new StandardListingViewHolder(view);
-        } else if ( categoryName.equalsIgnoreCase("PREMIUM")) {
+        } else if ( propertyType.equalsIgnoreCase("PREMIUM")) {
             view = inflater.inflate(R.layout.row_listing_elite, null );
             viewHolder = new PremiumListingViewHolder(view);
         }
@@ -76,7 +76,7 @@ public class PropertyListItemDataAdapter extends RecyclerView.Adapter  {
     @Override
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, int position) {
 
-        final PropertyListingModel propertyListingModel = categoryItemList.get(position);
+        final PropertyListingModel propertyListingModel = propertyListingModels.get(position);
         Log.d(TAG, "Enteirng onBindViewHolder with desc " +
                 propertyListingModel.getTruncatedDescription());
 
@@ -146,7 +146,7 @@ public class PropertyListItemDataAdapter extends RecyclerView.Adapter  {
 
     @Override
     public int getItemCount() {
-        return (null != categoryItemList ? categoryItemList.size() : 0);
+        return (null != propertyListingModels ? propertyListingModels.size() : 0);
 
     }
 

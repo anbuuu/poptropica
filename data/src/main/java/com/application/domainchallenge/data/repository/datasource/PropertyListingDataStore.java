@@ -12,5 +12,5 @@ public interface PropertyListingDataStore {
     /**
      * Get an {@link io.reactivex.Observable} which will emit {@link PropertyResults}
      */
-    Observable<PropertyResults> listingEntityList();
+    Observable<PropertyResults> propertyResultsEntity();
 }

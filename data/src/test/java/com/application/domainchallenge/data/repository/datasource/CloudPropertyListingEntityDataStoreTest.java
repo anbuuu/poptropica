@@ -25,8 +25,8 @@ public class CloudPropertyListingEntityDataStoreTest {
 
     @Test
     public void testGetListingEntityListFromApi() {
-        cloudListingDataStore.listingEntityList();
-        verify(mockCloudApi).listingEntityList();
+        cloudListingDataStore.propertyResultsEntity();
+        verify(mockCloudApi).propertyResultsObservable();
 
     }
 }

@@ -34,7 +34,7 @@ public class PropertyTypeListAdapter extends RecyclerView.Adapter<PropertyTypeLi
 
     private Context mContext;
     private final String TAG = PropertyTypeListAdapter.class.getSimpleName();
-    private List<PropertyTypeListingModel> listingsCollection;
+    private List<PropertyTypeListingModel> propertyTypeListingsCollection;
     SnapHelper snapHelper = new LinearSnapHelper();
 
     // TODO move the Arraylist to a ListingEntity Type Class
@@ -42,7 +42,7 @@ public class PropertyTypeListAdapter extends RecyclerView.Adapter<PropertyTypeLi
     public PropertyTypeListAdapter(Context context) {
 
         this.mContext = context;
-        this.listingsCollection = Collections.emptyList();
+        this.propertyTypeListingsCollection = Collections.emptyList();
     }
 
     @Override
@@ -54,10 +54,10 @@ public class PropertyTypeListAdapter extends RecyclerView.Adapter<PropertyTypeLi
     @Override
     public void onBindViewHolder(PropertyTypeListItemRowHolder holder, int position) {
 
-        final String sectionName = this.listingsCollection.get(position).getCategory();
+        final String sectionName = this.propertyTypeListingsCollection.get(position).getCategory();
 
         Log.d(TAG, "The Section Name is " + sectionName);
-        List<PropertyListingModel> singleSectionItems = (List<PropertyListingModel>) this.listingsCollection.get(position).getItems();
+        List<PropertyListingModel> singleSectionItems = (List<PropertyListingModel>) this.propertyTypeListingsCollection.get(position).getItems();
         holder.itemTitle.setText(sectionName);
 
         PropertyListItemDataAdapter propertyListItemDataAdapter = new
@@ -98,7 +98,7 @@ public class PropertyTypeListAdapter extends RecyclerView.Adapter<PropertyTypeLi
 
     @Override
     public int getItemCount() {
-        return (null != listingsCollection ? listingsCollection.size() : 0);
+        return (null != propertyTypeListingsCollection ? propertyTypeListingsCollection.size() : 0);
     }
 
     @Override
@@ -106,11 +106,11 @@ public class PropertyTypeListAdapter extends RecyclerView.Adapter<PropertyTypeLi
         return super.getItemViewType(position);
     }
 
-    public void setListingsCollection(Collection<PropertyTypeListingModel> listingsCollection) {
-        Log.d(TAG, "Entering setListingsCollection with Listings Collection " + listingsCollection.size());
+    public void setPropertyTypeListingsCollection(Collection<PropertyTypeListingModel> propertyTypeListingsCollection) {
+        Log.d(TAG, "Entering setPropertyTypeListingsCollection with Listings Collection " + propertyTypeListingsCollection.size());
 
-        this.validateListingsCollection(listingsCollection);
-        this.listingsCollection = (ArrayList<PropertyTypeListingModel>) listingsCollection;
+        this.validateListingsCollection(propertyTypeListingsCollection);
+        this.propertyTypeListingsCollection = (ArrayList<PropertyTypeListingModel>) propertyTypeListingsCollection;
         this.notifyDataSetChanged();
 
     }

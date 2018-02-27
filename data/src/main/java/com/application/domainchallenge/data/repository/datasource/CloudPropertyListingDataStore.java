@@ -18,8 +18,8 @@ class CloudPropertyListingDataStore implements PropertyListingDataStore {
     }
 
     @Override
-    public Observable<PropertyResults> listingEntityList() {
-        return this.cloudApi.listingEntityList();
+    public Observable<PropertyResults> propertyResultsEntity() {
+        return this.cloudApi.propertyResultsObservable();
     }
 
 }

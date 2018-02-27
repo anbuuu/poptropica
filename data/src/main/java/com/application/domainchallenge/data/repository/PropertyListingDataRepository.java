@@ -18,7 +18,7 @@ import io.reactivex.Observable;
  */
 
 @Singleton
-public class PropertyPropertyListingDataRepository implements PropertyListingRepository {
+public class PropertyListingDataRepository implements PropertyListingRepository {
 
     private final CloudPropertyListingDataStoreFactory cloudPropertyListingDataStoreFactory;
     private final PropertyListingEntityDataMapper propertyListingEntityDataMapper;
@@ -30,15 +30,15 @@ public class PropertyPropertyListingDataRepository implements PropertyListingRep
      * @param propertyListingEntityDataMapper
      */
     @Inject
-    public PropertyPropertyListingDataRepository(CloudPropertyListingDataStoreFactory cloudPropertyListingDataStoreFactory, PropertyListingEntityDataMapper propertyListingEntityDataMapper) {
+    public PropertyListingDataRepository(CloudPropertyListingDataStoreFactory cloudPropertyListingDataStoreFactory, PropertyListingEntityDataMapper propertyListingEntityDataMapper) {
         this.cloudPropertyListingDataStoreFactory = cloudPropertyListingDataStoreFactory;
         this.propertyListingEntityDataMapper = propertyListingEntityDataMapper;
     }
 
 
     @Override
-    public Observable<List<Listing>> listings() {
+    public Observable<List<Listing>> propertyListings() {
         final PropertyListingDataStore propertyListingDataStore = this.cloudPropertyListingDataStoreFactory.createCloudDataStore();
-        return propertyListingDataStore.listingEntityList().map(this.propertyListingEntityDataMapper::transform);
+        return propertyListingDataStore.propertyResultsEntity().map(this.propertyListingEntityDataMapper::transform);
     }
 }

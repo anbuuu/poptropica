@@ -186,7 +186,7 @@ public class PropertyListingsFragment extends BaseFragment implements
     @Override
     public void renderListingsList(Collection<PropertyTypeListingModel> listingModelCollection) {
         if ( listingModelCollection != null ) {
-            this.categoryListDataAdapter.setListingsCollection(listingModelCollection);
+            this.categoryListDataAdapter.setPropertyTypeListingsCollection(listingModelCollection);
         }
     }
 

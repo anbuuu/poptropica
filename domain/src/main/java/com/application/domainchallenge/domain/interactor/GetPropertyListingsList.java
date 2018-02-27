@@ -29,6 +29,6 @@ public class GetPropertyListingsList extends UseCase<List<Listing>, Void> {
 
     @Override
     Observable<List<Listing>> buildUseCasObservable(Void unused) {
-        return this.propertyListingRepository.listings();
+        return this.propertyListingRepository.propertyListings();
     }
 }

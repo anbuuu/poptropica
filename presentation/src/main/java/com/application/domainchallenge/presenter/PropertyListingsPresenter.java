@@ -109,7 +109,7 @@ public class PropertyListingsPresenter implements Presenter {
 
         @Override
         public void onNext(List<Listing> listings) {
-            Log.d(TAG, "Retrieving listings with count = " + listings.size());
+            Log.d(TAG, "Retrieving propertyListings with count = " + listings.size());
             PropertyListingsPresenter.this.showListingsCollectionView(listings);
         }
 

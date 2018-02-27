@@ -11,11 +11,11 @@ import io.reactivex.Observable;
 
 public interface CloudApi {
 
-    String API_DOMAIN_URL = "https://rest.domain.com.au/searchservice.svc/mapsearch?mode=buy&sub=Bondi&pcodes=2026&state=NSW";
+    String DOMAIN_JSON_URL = "https://rest.domain.com.au/searchservice.svc/mapsearch?mode=buy&sub=Bondi&pcodes=2026&state=NSW";
     /**
      * Retrieves an {@link io.reactivex.Observable} which will emit a link of
      * {@link PropertyResults}
      */
-    Observable<PropertyResults> listingEntityList();
+    Observable<PropertyResults> propertyResultsObservable();
 
 }

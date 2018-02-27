@@ -14,5 +14,5 @@ public interface PropertyListingRepository {
     /**
      * Get an {@link io.reactivex.Observable} which will emit a list of {@link Listing}
      */
-    Observable<List<Listing>> listings();
+    Observable<List<Listing>> propertyListings();
 }

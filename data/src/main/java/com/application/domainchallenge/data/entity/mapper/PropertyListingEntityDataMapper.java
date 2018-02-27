@@ -43,9 +43,6 @@ public class PropertyListingEntityDataMapper {
                 }
             }
         }
-
-
-        // Need to Map PropertyResults into List Listings
         return listingsList;
     }
 

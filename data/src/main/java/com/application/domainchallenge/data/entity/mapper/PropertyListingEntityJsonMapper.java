@@ -27,7 +27,7 @@ public class PropertyListingEntityJsonMapper {
      * Transforms from Valid Json String to List of {@link com.application.domainchallenge.data.entity.ListingEntity}
      *
      * @param listingJsonResponse A Json representing
-     * @return List of {@link com.application.domainchallenge.data.entity.ListingEntity}
+     * @return {@link PropertyResults}
      * @throws com.google.gson.JsonSyntaxException if the
      * json string is not a valid structure
      */

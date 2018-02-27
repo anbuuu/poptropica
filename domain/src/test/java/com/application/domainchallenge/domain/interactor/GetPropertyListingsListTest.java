@@ -34,7 +34,7 @@ public class GetPropertyListingsListTest {
     public void testGetListingsListUseCaseObservableHappyCase() {
         getPropertyListingsList.buildUseCasObservable(null);
 
-        verify(mockPropertyListingRepository).listings();
+        verify(mockPropertyListingRepository).propertyListings();
         verifyNoMoreInteractions(mockPropertyListingRepository);
         verifyZeroInteractions(mockThreadExecutor);
         verifyZeroInteractions(mockPostExecutionThread);

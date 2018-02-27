@@ -35,12 +35,12 @@ public class CloudApiImpl implements CloudApi {
 
 
     @Override
-    public Observable<PropertyResults> listingEntityList() {
+    public Observable<PropertyResults> propertyResultsObservable() {
 
         return Observable.create(emitter -> {
             if ( isThereInternetConnection()) {
                 try {
-                    String responseListingEntities = getListingEntitiesFromApi();
+                    String responseListingEntities = getPropertyResultsFromAPI();
                     Log.d(TAG, "the Response retrieved is " + responseListingEntities.toString());
                     if ( responseListingEntities != null) {
                         emitter.onNext(propertyListingEntityJsonMapper.transformListingEntityCollection(responseListingEntities));
@@ -55,8 +55,8 @@ public class CloudApiImpl implements CloudApi {
         });
     }
 
-    private String getListingEntitiesFromApi() throws MalformedURLException {
-        return ApiConnection.createGET(API_DOMAIN_URL, context).requestSyncCall();
+    private String getPropertyResultsFromAPI() throws MalformedURLException {
+        return ApiConnection.createGET(DOMAIN_JSON_URL, context).requestSyncCall();
     }
 
     /**
