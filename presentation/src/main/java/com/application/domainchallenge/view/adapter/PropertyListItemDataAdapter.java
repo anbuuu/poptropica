@@ -82,13 +82,14 @@ public class PropertyListItemDataAdapter extends RecyclerView.Adapter  {
 
         //Toast.makeText(mContext, "Toast. Test Message ", Toast.LENGTH_SHORT).show();
 
+        // TODO Fix this two instance variable handling
 
         if ( holder instanceof StandardListingViewHolder) {
             Log.d(TAG, "AAA Standard ListingEntity View Holder instance ");
 
             Glide.with(mContext)
                     .load(propertyListingModel.getRetinaDisplayThumbUrl())
-                    .fitCenter()
+                    .centerCrop()
                     .into(((StandardListingViewHolder) holder).iv_listing_image_normal);
 
             ((StandardListingViewHolder) holder).tv_listing_price.setText(propertyListingModel.getDisplayPrice());
@@ -101,7 +102,7 @@ public class PropertyListItemDataAdapter extends RecyclerView.Adapter  {
             ((StandardListingViewHolder) holder).tv_listing_address.setText(propertyListingModel.getDisplayableAddress());
             Glide.with(mContext)
                     .load(propertyListingModel.getAgencyLogoUrl())
-                    .centerCrop()
+                    .fitCenter()
                     .into(((StandardListingViewHolder) holder).iv_agency_logo);
         } else if ( holder instanceof PremiumListingViewHolder ) {
             Log.d(TAG, "AAA premium ListingEntity View Holder instance ");
@@ -120,7 +121,7 @@ public class PropertyListItemDataAdapter extends RecyclerView.Adapter  {
             ((PremiumListingViewHolder) holder).tv_listing_address.setText(propertyListingModel.getDisplayableAddress());
             Glide.with(mContext)
                     .load(propertyListingModel.getAgencyLogoUrl())
-                    .centerCrop()
+                    .fitCenter()
                     .into(((PremiumListingViewHolder) holder).iv_agency_logo);
 
             Glide.with(mContext)

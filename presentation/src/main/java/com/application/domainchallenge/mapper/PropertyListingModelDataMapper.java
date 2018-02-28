@@ -90,8 +90,15 @@ public class PropertyListingModelDataMapper {
                     premiumPropertyListingModelCollection.size());
 
             // TODO moved to string constants
-            propertyTypeListingModelCollection.add(new PropertyTypeListingModel("STANDARD", standardPropertyListingModelCollection));
-            propertyTypeListingModelCollection.add(new PropertyTypeListingModel("PREMIUM", premiumPropertyListingModelCollection));
+
+            // Check if there are valid standard and premium listings
+            if ( standardPropertyListingModelCollection.size() > 0 ) {
+                propertyTypeListingModelCollection.add(new PropertyTypeListingModel("Standard", standardPropertyListingModelCollection));
+            }
+
+            if ( premiumPropertyListingModelCollection.size() > 0 ) {
+                propertyTypeListingModelCollection.add(new PropertyTypeListingModel("Premium", premiumPropertyListingModelCollection));
+            }
         } else {
             propertyTypeListingModelCollection = Collections.emptyList();
         }

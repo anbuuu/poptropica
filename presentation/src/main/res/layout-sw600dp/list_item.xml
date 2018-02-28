@@ -4,12 +4,14 @@
     android:layout_height="wrap_content"
     android:background="?android:selectableItemBackground"
     android:orientation="vertical"
-    android:padding="5dp">
+    android:paddingTop="20dp"
+    android:paddingBottom="20dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="2dp">
+        android:id="@+id/propertyTypeLayout"
+        >
 
         <TextView
             android:id="@+id/categoryHeader"

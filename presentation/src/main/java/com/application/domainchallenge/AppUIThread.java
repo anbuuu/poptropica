@@ -14,10 +14,10 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
  */
 
 @Singleton
-public class UIThread implements PostExecutionThread {
+public class AppUIThread implements PostExecutionThread {
 
     @Inject
-    UIThread() {}
+    AppUIThread() {}
 
     @Override
     public Scheduler getScheduler() {

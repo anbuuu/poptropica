@@ -26,8 +26,7 @@ public class CloudApiImpl implements CloudApi {
     public CloudApiImpl(Context context, PropertyListingEntityJsonMapper propertyListingEntityJsonMapper) {
 
         if ( context == null || propertyListingEntityJsonMapper == null) {
-            // TODO Change the Exception Text
-            throw new IllegalArgumentException("The Constructor Parameters cannot be null ");
+            throw new IllegalArgumentException("Constructor parameters cannot be null ");
         }
         this.context = context;
         this.propertyListingEntityJsonMapper = propertyListingEntityJsonMapper;

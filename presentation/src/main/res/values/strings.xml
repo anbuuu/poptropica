@@ -7,8 +7,6 @@
     <string name="exception_message_generic">There was an application error</string>
     <string name="exception_message_no_connection">There is no internet connection</string>
     <string name="exception_message_listing_not_found">Cannot retrieve Listing data. Check your internet connection</string>
-
-    <string name="title_standard">STANDARD</string>
-    <string name="title_premium">PREMIUM</string>
+    s
     <string name="contentDescriptionContent">ListingsImageData</string>
 </resources>

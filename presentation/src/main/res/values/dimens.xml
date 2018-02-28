@@ -17,6 +17,10 @@
     <dimen name="lv_row_icon_padding">5dp</dimen>
 
 
+    <dimen name="list_entry_d10_main_image_width">77dp</dimen>
+    <dimen name="list_entry_d10_main_image_height">116dp</dimen>
+
+
     <!-- From FF  -->
 
     <dimen name="rvPaddingTop">2dp</dimen>

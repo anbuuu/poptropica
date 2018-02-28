@@ -3,7 +3,7 @@ package com.application.domainchallenge.internal.di.modules;
 import android.content.Context;
 
 import com.application.domainchallenge.AndroidApplication;
-import com.application.domainchallenge.UIThread;
+import com.application.domainchallenge.AppUIThread;
 import com.application.domainchallenge.data.executor.ConcurrentJobExecutor;
 import com.application.domainchallenge.data.repository.PropertyListingDataRepository;
 import com.application.domainchallenge.domain.executor.PostExecutionThread;
@@ -41,9 +41,9 @@ public class ApplicationModule {
     }
 
     @Provides
-    @Singleton //TODO change the name for UIThread
-    PostExecutionThread providePostExecutionThread(UIThread uiThread) {
-        return uiThread;
+    @Singleton
+    PostExecutionThread providePostExecutionThread(AppUIThread appUiThread) {
+        return appUiThread;
     }
 
     @Provides
