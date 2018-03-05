@@ -59,15 +59,13 @@ public class PropertyListItemDataAdapter extends RecyclerView.Adapter  {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
 
         Log.d(TAG, "Entering onCreateView Holder with View Type " + viewType);
-
-
-        final View view;
         if ( propertyType.equalsIgnoreCase("STANDARD")) {
-            view = inflater.inflate(R.layout.row_listing_normal, null );
-            viewHolder = new StandardListingViewHolder(view);
+            viewHolder = new StandardListingViewHolder
+                    (inflater.inflate(R.layout.row_listing_normal, null));
+
         } else if ( propertyType.equalsIgnoreCase("PREMIUM")) {
-            view = inflater.inflate(R.layout.row_listing_elite, null );
-            viewHolder = new PremiumListingViewHolder(view);
+            viewHolder = new PremiumListingViewHolder(
+                    inflater.inflate(R.layout.row_listing_elite, null ));
         }
 
         return viewHolder;
@@ -77,7 +75,7 @@ public class PropertyListItemDataAdapter extends RecyclerView.Adapter  {
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, int position) {
 
         final PropertyListingModel propertyListingModel = propertyListingModels.get(position);
-        Log.d(TAG, "Enteirng onBindViewHolder with desc " +
+        Log.d(TAG, "Entering onBindViewHolder with desc " +
                 propertyListingModel.getTruncatedDescription());
 
         //Toast.makeText(mContext, "Toast. Test Message ", Toast.LENGTH_SHORT).show();
@@ -108,7 +106,7 @@ public class PropertyListItemDataAdapter extends RecyclerView.Adapter  {
             Log.d(TAG, "AAA premium ListingEntity View Holder instance ");
             Glide.with(mContext)
                     .load(propertyListingModel.getRetinaDisplayThumbUrl())
-                    .fitCenter()
+                    .centerCrop()
                     .into(((PremiumListingViewHolder) holder).iv_listing_image_normal);
 
             ((PremiumListingViewHolder) holder).tv_listing_price.setText(propertyListingModel.getDisplayPrice());
@@ -121,12 +119,12 @@ public class PropertyListItemDataAdapter extends RecyclerView.Adapter  {
             ((PremiumListingViewHolder) holder).tv_listing_address.setText(propertyListingModel.getDisplayableAddress());
             Glide.with(mContext)
                     .load(propertyListingModel.getAgencyLogoUrl())
-                    .fitCenter()
+                    .centerCrop()
                     .into(((PremiumListingViewHolder) holder).iv_agency_logo);
 
             Glide.with(mContext)
                     .load(propertyListingModel.getSecondRetinaDisplayThumbUrl() )
-                    .fitCenter()
+                    .centerCrop()
                     .into(((PremiumListingViewHolder) holder).iv_listing_image_elite);
         }
 
@@ -141,14 +139,11 @@ public class PropertyListItemDataAdapter extends RecyclerView.Adapter  {
                 }
             }
         });
-
-
     }
 
     @Override
     public int getItemCount() {
         return (null != propertyListingModels ? propertyListingModels.size() : 0);
-
     }
 
     public void setOnPropertyItemClickListener(OnPropertyItemClickListener
